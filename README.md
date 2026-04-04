@@ -51,8 +51,6 @@ I love experimenting with new coding ideas
 ## 🚀 Featured Projects
 
 🔹 *Coming soon...*  
-(You can add your best projects here later)
-
 ---
 
 ## 📊 GitHub Stats
