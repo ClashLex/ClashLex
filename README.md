@@ -63,11 +63,12 @@ I love experimenting with new coding ideas
 
 ---
 
-## 🏆 GitHub Trophies
+<!--## 🏆 GitHub Trophies
 
 ![](https://github-profile-trophy.vercel.app/?username=ClashLex&theme=tokyonight&no-frame=true&no-bg=true&margin-w=4)
 
 ---
+-->
 
 ## 📈 GitHub Activity
 
@@ -75,11 +76,12 @@ I love experimenting with new coding ideas
 
 ---
 
-## 🔝 Top Contributed Repo
+<!-- ## 🔝 Top Contributed Repo
 
 ![](https://github-contributor-stats.vercel.app/api?username=ClashLex&limit=5&theme=tokyonight&combine_all_yearly_contributions=true)
 
 ---
+-->
 
 ## 🔥 GitHub Streak
 
@@ -87,11 +89,12 @@ I love experimenting with new coding ideas
 
 ---
 
-## 💻 Top Languages
+<!-- ## 💻 Top Languages
 
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ClashLex&layout=compact&theme=tokyonight&hide_border=true)
 
 ---
+-->
 
 ## ✍️ Random Dev Quote
 
