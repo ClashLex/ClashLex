@@ -1,9 +1,8 @@
-<!-- 🔥 Animated Intro -->
 <h1 align="center">Hi 👋, I'm Ansil Muhammed N S</h1>
-<h3 align="center">Beginner Developer | Learning & Building 🚀</h3>
+<h3 align="center">Frontend Developer | B.Tech CSE Student @ KMEA 🚀</h3>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&width=500&lines=Learning+Web+Development;Building+Projects+Step+by+Step;Exploring+C+%2C+Python+%26+Shell;Future+Full+Stack+Developer" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&width=500&lines=Frontend+Web+Development;Building+Real-World+Projects;Experimenting+with+AI+Tools;Vibe+Coding+%E2%9A%A1" />
 </p>
 
 ---
@@ -11,22 +10,22 @@
 # 💫 About Me
 
 🔭 I’m currently working on  
-Learning web development and building small practice projects  
-
-👯 I’m looking to collaborate on  
-Beginner-friendly coding and web development projects  
-
-🤝 I’m looking for help with  
-Improving my skills in HTML, CSS, JavaScript, and programming basics  
+**Building modern, responsive web applications and practical IoT systems.**
 
 🌱 I’m currently learning  
-C, Python, Shell scripting, and web development  
+**Advanced Python, C, and integrating AI-powered development workflows.**
+
+👯 I’m looking to collaborate on  
+**Open-source frontend projects and hackathons.**
+
+🤝 I’m looking for help with  
+**Building scalable architectures and mastering UI/UX design principles.**
 
 💬 Ask me about  
-Beginner coding and simple websites  
+**Frontend design, vibe coding, and building things from scratch.**
 
 ⚡ Fun fact  
-I love experimenting with new coding ideas  
+**I love combining hardware and software—like bringing IoT sensors to life with Python!**
 
 ---
 
@@ -38,6 +37,7 @@ I love experimenting with new coding ideas
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" height="30"/>
 </a>
 <a href="https://github.com/ClashLex"><img src="https://img.shields.io/badge/-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
+<a href="https://wa.me/919605818074"><img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/></a>
 </p>
 
 ---
@@ -45,14 +45,21 @@ I love experimenting with new coding ideas
 ## 💻 Tech Stack
 
 <p>
-<img src="https://skillicons.dev/icons?i=c,python,html,css,js,bash,git,github" />
+<img src="https://skillicons.dev/icons?i=html,css,js,python,c,figma,git,github,bash" />
 </p>
 
 ---
 
 ## 🚀 Featured Projects
 
-🔹 *Coming soon...*  
+* **AquaSense** Smart water quality monitoring system using IoT sensors. Built with a full business plan and web interface for the Engineering Entrepreneurship & IPR course.
+
+* **Neon Gauntlet** A single-file HTML arcade experience featuring sequential cyberpunk-themed minigames, a dynamic leaderboard, and localStorage persistence.
+
+* **Personal Portfolio V4** My interactive developer portfolio featuring dynamic particle backgrounds, modern glassmorphism UI, scroll animations, and responsive design.
+
+* **Vishu Festival Website** A responsive, visually engaging festival-themed website with modern UI aesthetics, smooth animations, and a polished dark mode layout.
+
 ---
 
 ## 📊 GitHub Stats
@@ -65,38 +72,24 @@ I love experimenting with new coding ideas
 
 ---
 
-<!--## 🏆 GitHub Trophies
+<!--## 🔝 Top Contributed Repositories
 
-![](https://github-profile-trophy.vercel.app/?username=ClashLex&theme=tokyonight&no-frame=true&no-bg=true&margin-w=4)
+![Most Contributed Repos](https://github-contributor-stats.vercel.app/api?username=ClashLex&limit=5&theme=tokyonight&combine_all_yearly_contributions=true)
 
----
 -->
+
 
 ## 📈 GitHub Activity
 
-![GitHub Contribution Graph](https://ghchart.rshah.org/ClashLex)
+![GitHub Contribution Graph](https://ghchart.rshah.org/a855f7/ClashLex)
 
 ---
-
-<!-- ## 🔝 Top Contributed Repo
-
-![](https://github-contributor-stats.vercel.app/api?username=ClashLex&limit=5&theme=tokyonight&combine_all_yearly_contributions=true)
-
----
--->
 
 ## 🔥 GitHub Streak
 
 ![GitHub Streak](https://streak-stats.demolab.com?user=ClashLex&theme=tokyonight&hide_border=true)
 
 ---
-
-<!-- ## 💻 Top Languages
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ClashLex&layout=compact&theme=tokyonight&hide_border=true)
-
----
--->
 
 ## ✍️ Random Dev Quote
 
