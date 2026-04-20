@@ -64,6 +64,9 @@
     <img src="https://github-readme-streak-stats.herokuapp.com?user=ClashLex&theme=tokyonight&hide_border=true" height="150" />
 </p>
 
+![GitHub Contribution Graph](https://ghchart.rshah.org/a855f7/ClashLex)
+
+---
 
 ## 🚀 Featured Projects
 
@@ -93,12 +96,6 @@
 
 -->
 
-
-## 📈 GitHub Activity
-
-![GitHub Contribution Graph](https://ghchart.rshah.org/a855f7/ClashLex)
-
----
 
 <!--## 🔥 GitHub Streak
 
