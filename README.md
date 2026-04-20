@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyNGFoaWRyOW0zcXpmaTdiZzI5ZXhpbzY4bHJwaWF6Zms4djdlejY3biZlcD12MV9naWZzX3NlYXJjaCZjdD1n/du3J3cXyzhj75IOgvA/200w.webp" width="180">
+</p>
+
+
 <h1 align="center">Hi 👋, I'm Ansil Muhammed N S</h1>
 <h3 align="center">Experimentalist | B.Tech CSE Student @ KMEA 🚀</h3>
 
@@ -50,6 +55,16 @@
 
 ---
 
+<h2>📊 GitHub Stats & Activity</h2>
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=ClashLex&show_icons=true&theme=radical&hide_border=true&count_private=true" height="170"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ClashLex&layout=compact&hide_border=true&theme=radical&langs_count=8&hide=jupyter%20notebook,tex,css,php" height="170"/>
+</p>
+<p align="center">
+    <img src="https://github-readme-streak-stats.herokuapp.com?user=ClashLex&theme=tokyonight&hide_border=true" height="150" />
+</p>
+
+
 ## 🚀 Featured Projects
 
 * **AquaSense** Smart water quality monitoring system using IoT sensors. Built with a full business plan and web interface for the Engineering Entrepreneurship & IPR course.
@@ -85,11 +100,11 @@
 
 ---
 
-## 🔥 GitHub Streak
+<!--## 🔥 GitHub Streak
 
 ![GitHub Streak](https://streak-stats.demolab.com?user=ClashLex&theme=tokyonight&hide_border=true)
 
----
+-->
 
 ## ✍️ Random Dev Quote
 
