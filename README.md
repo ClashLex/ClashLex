@@ -14,7 +14,7 @@
 
 ## 💫 About Me
 
-- 🔭 I’m currently working on **building modern, responsive web applications and practical IoT systems.**
+- 🔭 I’m currently working on **building modern, responsive web applications.**
 - 🌱 I’m currently learning **advanced Python, C, and integrating AI-powered development workflows.**
 - 👯 I’m looking to collaborate on **open-source frontend projects and hackathons.**
 - 🤝 I’m looking for help with **building scalable architectures and mastering UI/UX design principles.**
