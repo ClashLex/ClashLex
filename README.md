@@ -47,14 +47,14 @@
 
 ---
 
-## 🚀 Featured Projects
+<!--## 🚀 Featured Projects
 
 * **AquaSense:** Smart water quality monitoring system using IoT sensors. Built with a full business plan and web interface for the Engineering Entrepreneurship & IPR course.
 * **Neon Gauntlet:** A single-file HTML arcade experience featuring sequential cyberpunk-themed minigames, a dynamic leaderboard, and localStorage persistence.
 * **Personal Portfolio V4:** My interactive developer portfolio featuring dynamic particle backgrounds, modern glassmorphism UI, scroll animations, and responsive design.
 * **Vishu Festival Website:** A responsive, visually engaging festival-themed website with modern UI aesthetics, smooth animations, and a polished dark mode layout.
 
----
+-->
 
 ## 📊 GitHub Stats & Activity
 
