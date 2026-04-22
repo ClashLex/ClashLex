@@ -56,6 +56,7 @@
 
 -->
 
+
 ## 📊 GitHub Stats & Activity
 
 <p align="center">
@@ -70,6 +71,8 @@
 <p align="center">
   <img src="https://ghchart.rshah.org/a855f7/ClashLex" alt="GitHub Contribution Graph" />
 </p>
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=ClashLex&theme=react-dark&bg_color=20232a&hide_border=true" width="100%"/>
+
 
 ---
 
