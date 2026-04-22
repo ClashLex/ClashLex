@@ -9,7 +9,8 @@
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&width=500&lines=Frontend+Web+Development;Experimenting+with+AI+Tools;Vibe+Coding+%E2%9A%A1" />
 </p>
 
----
+ <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
+ 
 
 ## 💫 About Me
 
@@ -20,7 +21,8 @@
 - 💬 Ask me about **frontend design, vibe coding, and building things from scratch.**
 - ⚡ Fun fact: **I love combining hardware and software—like bringing IoT sensors to life with Python!**
 
----
+ <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
+ 
 
 ## 🌐 Connect with Me
 
@@ -37,7 +39,8 @@
   <img src="https://img.shields.io/github/stars/ClashLex?affiliations=OWNER%2CCOLLABORATOR&style=flat&color=181717" alt="Stars" />
 </p>
 
----
+ <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
+ 
 
 ## 💻 Tech Stack
 
@@ -45,7 +48,8 @@
   <img src="https://skillicons.dev/icons?i=html,css,js,python,c,figma,git,github,bash" />
 </p>
 
----
+ <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
+ 
 
 <!--## 🚀 Featured Projects
 
@@ -74,13 +78,17 @@
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=ClashLex&theme=react-dark&bg_color=20232a&hide_border=true" width="100%"/>
 
 
----
+ <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
+ 
 
 ## ✍️ Random Dev Quote
 
 <p align="center">
   <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" alt="Random Dev Quote" />
 </p>
+
+ <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
+ 
 
 ##  💭 My Quote
 
