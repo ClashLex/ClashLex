@@ -14,12 +14,11 @@
 
 ## 💫 About Me
 
-- 🔭 I’m currently working on **building modern, responsive web applications.**
-- 🌱 I’m currently learning **Python, C, and integrating AI-powered development workflows.**
-- 👯 I’m looking to collaborate on **open-source frontend projects and hackathons.**
-- 🤝 I’m looking for help with **building scalable architectures and mastering UI/UX design principles.**
+- 🔭 I'm currently working on **building modern, responsive web applications.**
+- 🌱 I'm currently learning **Python, C, and integrating AI-powered development workflows.**
+- 👯 I'm looking to collaborate on **open-source frontend projects and hackathons.**
+- 🤝 I'm looking for help with **building scalable architectures and mastering UI/UX design principles.**
 - 💬 Ask me about **frontend design, vibe coding, and building things from scratch.**
-<!--- ⚡ Fun fact: **I love combining hardware and software—like bringing IoT sensors to life with Python!**-->
 
  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
  
@@ -49,16 +48,99 @@
 </p>
 
  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
- 
 
-<!--## 🚀 Featured Projects
 
-* **AquaSense:** Smart water quality monitoring system using IoT sensors. Built with a full business plan and web interface for the Engineering Entrepreneurship & IPR course.
-* **Neon Gauntlet:** A single-file HTML arcade experience featuring sequential cyberpunk-themed minigames, a dynamic leaderboard, and localStorage persistence.
-* **Personal Portfolio V4:** My interactive developer portfolio featuring dynamic particle backgrounds, modern glassmorphism UI, scroll animations, and responsive design.
-* **Vishu Festival Website:** A responsive, visually engaging festival-themed website with modern UI aesthetics, smooth animations, and a polished dark mode layout.
+## 🚀 Featured Projects
 
--->
+<table align="center">
+  <tr>
+    <td width="50%" valign="top">
+      <h3 align="center">🕹️ Reiatsu </h3>
+      <p align="center">
+        <a href="https://github.com/ClashLex/bleach" target="_blank">
+          <img src="https://via.placeholder.com/400x200/1a1a2e/00F7FF?text=Project+Preview" width="100%" alt="Project Preview"/>
+        </a>
+      </p>
+      <p align="center">
+        A high level webcam experience with openpipe.
+      </p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/Html5-E34F26?style=flat&logo=html5&logoColor=white"/>
+        <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white"/>
+        <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black"/>
+      </p>
+      <p align="center">
+        <a href="https://clashlex.github.io/bleach"><img src="https://img.shields.io/badge/Live Demo-00F7FF?style=for-the-badge&logo=githubpages&logoColor=black"/></a>
+        <a href="https://github.com/ClashLex/bleach"><img src="https://img.shields.io/badge/Source-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
+      </p>
+    </td>
+    <td width="50%" valign="top">
+      <h3 align="center">🕹️ Cyber Slide</h3>
+      <p align="center">
+        <a href="https://github.com/ClashLex/Cyber-Slide" target="_blank">
+          <img src="https://via.placeholder.com/400x200/1a1a2e/00F7FF?text=Project+Preview" width="100%" alt="Project Preview"/>
+        </a>
+      </p>
+      <p align="center">
+        CyberSlide is a classic sliding puzzle wrapped in a cyberpunk neon aesthetic
+      </p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/React-E34F26?style=flat&logo=react&logoColor=white"/>
+        <img src="https://img.shields.io/badge/vite-1572B6?style=flat&logo=vite&logoColor=white"/>
+        <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black"/>
+      </p>
+      <p align="center">
+        <a href="https://clashlex.github.io/Cyber-Slide"><img src="https://img.shields.io/badge/Live Demo-00F7FF?style=for-the-badge&logo=githubpages&logoColor=black"/></a>
+        <a href="https://github.com/ClashLex/Cyber-Slide"><img src="https://img.shields.io/badge/Source-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
+      </p>
+    </td>
+  </tr>
+  <tr>
+<!--    <td width="50%" valign="top">
+      <h3 align="center">🕹️ Project Name</h3>
+      <p align="center">
+        <a href="https://github.com/ClashLex/YOUR-REPO" target="_blank">
+          <img src="https://via.placeholder.com/400x200/1a1a2e/00F7FF?text=Project+Preview" width="100%" alt="Project Preview"/>
+        </a>
+      </p>
+      <p align="center">
+        Short description of what this project does and what makes it cool.
+      </p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white"/>
+        <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white"/>
+        <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black"/>
+      </p>
+      <p align="center">
+        <a href="https://clashlex.github.io/YOUR-REPO"><img src="https://img.shields.io/badge/Live Demo-00F7FF?style=for-the-badge&logo=githubpages&logoColor=black"/></a>
+        <a href="https://github.com/ClashLex/YOUR-REPO"><img src="https://img.shields.io/badge/Source-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
+      </p>
+    </td>
+    <td width="50%" valign="top">
+      <h3 align="center">🕹️ Project Name</h3>
+      <p align="center">
+        <a href="https://github.com/ClashLex/YOUR-REPO" target="_blank">
+          <img src="https://via.placeholder.com/400x200/1a1a2e/00F7FF?text=Project+Preview" width="100%" alt="Project Preview"/>
+        </a>
+      </p>
+      <p align="center">
+        Short description of what this project does and what makes it cool.
+      </p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white"/>
+        <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white"/>
+        <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black"/>
+      </p>
+      <p align="center">
+        <a href="https://clashlex.github.io/YOUR-REPO"><img src="https://img.shields.io/badge/Live Demo-00F7FF?style=for-the-badge&logo=githubpages&logoColor=black"/></a>
+        <a href="https://github.com/ClashLex/YOUR-REPO"><img src="https://img.shields.io/badge/Source-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
+      </p>
+    </td>
+  </tr>
+    -->
+</table>
+
+ <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
 
 
 ## 📊 GitHub Stats & Activity
@@ -93,5 +175,3 @@
 ##  💭 My Quote
 
 > **"FAKE IT TILL YOU MAKE IT"**
-> 
-
