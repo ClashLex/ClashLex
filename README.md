@@ -78,7 +78,7 @@
       <h3 align="center">🕹️ Cyber Slide</h3>
       <p align="center">
         <a href="https://github.com/ClashLex/Cyber-Slide" target="_blank">
-          <img src="https://via.placeholder.com/400x200/1a1a2e/00F7FF?text=Project+Preview" width="100%" alt="Project Preview"/>
+          <img src="./assets/cyberslide.png" width="100%" alt="Project Preview"/>
         </a>
       </p>
       <p align="center">
