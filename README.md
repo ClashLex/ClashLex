@@ -62,7 +62,7 @@
         </a>
       </p>
       <p align="center">
-        A high level webcam experience with openpipe.
+        A high level webcam experience with mediapipe.
       </p>
       <p align="center">
         <img src="https://img.shields.io/badge/Html5-E34F26?style=flat&logo=html5&logoColor=white"/>
