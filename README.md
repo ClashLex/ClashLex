@@ -1,9 +1,14 @@
-<p align="center">
+<!--<p align="center">
   <img src="https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyNGFoaWRyOW0zcXpmaTdiZzI5ZXhpbzY4bHJwaWF6Zms4djdlejY3biZlcD12MV9naWZzX3NlYXJjaCZjdD1n/du3J3cXyzhj75IOgvA/200w.webp" width="180">
 </p>
 
 <h1 align="center">Hi 👋, I'm Ansil Muhammed N S</h1>
-<h3 align="center">Experimentalist | B.Tech CSE Student </h3>
+<h3 align="center">Experimentalist | B.Tech CSE Student </h3>-->
+<div align="center">      
+      
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=200&section=header&text=Ansil%20Muhammed%20N%20S&fontSize=60&fontColor=ffffff&fontAlignY=38&desc=Frontend%20%E2%80%A2%20AI%20%E2%80%A2%20Experimenting&descAlignY=58&descSize=18&animation=fadeIn"/> 
+
+</div>
 
 <p align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&width=500&lines=Frontend+Web+Development;Experimenting+with+AI+Tools;Vibe+Coding+%E2%9A%A1" />
@@ -44,7 +49,7 @@
 ## 💻 Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=html,css,js,python,c,figma,git,github,bash" />
+  <img src="https://skillicons.dev/icons?i=html,css,js,react,python,c,figma,git,github,bash" />
 </p>
 
  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
@@ -172,6 +177,10 @@
  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
  
 
-##  💭 My Quote
+<div align="center">
 
-> **"FAKE IT TILL YOU MAKE IT"**
+## 💭 My Quote  
+> *"Fake it till you make it"*
+
+</div>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=120&section=footer"/>
