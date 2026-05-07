@@ -150,10 +150,10 @@
 
 ## 📊 GitHub Stats & Activity
 
-<p align="center">
+<!--<p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=ClashLex&show_icons=true&theme=radical&hide_border=true&count_private=true" height="170"/>
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ClashLex&layout=compact&hide_border=true&theme=radical&langs_count=8&hide=jupyter%20notebook,tex,css,php" height="170"/>
-</p>
+</p>-->
 
 <p align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com?user=ClashLex&theme=tokyonight&hide_border=true" height="150" />
