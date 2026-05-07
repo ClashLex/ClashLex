@@ -158,11 +158,26 @@
 <p align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com?user=ClashLex&theme=tokyonight&hide_border=true" height="150" />
 </p>
+<!-- CONTRIBUTION SNAKE -->
+<h2 align="center">
+  <samp>🐍 CONTRIBUTION SNAKE 🐍</samp>
+</h2>
 
 <p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)"
+      srcset="https://raw.githubusercontent.com/ClashLex/ClashLex/output/github-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)"
+      srcset="https://raw.githubusercontent.com/ClashLex/ClashLex/output/github-snake.svg" />
+    <img alt="Snake animation"
+      src="https://raw.githubusercontent.com/ClashLex/ClashLex/output/github-snake-dark.svg" />
+  </picture>
+</p>
+
+<!--<p align="center">
   <img src="https://ghchart.rshah.org/a855f7/ClashLex" alt="GitHub Contribution Graph" />
 </p>
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=ClashLex&theme=react-dark&bg_color=20232a&hide_border=true" width="100%"/>
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=ClashLex&theme=react-dark&bg_color=20232a&hide_border=true" width="100%"/> -->
 
 
  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
