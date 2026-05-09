@@ -49,7 +49,7 @@
 ## 💻 Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=html,css,js,react,python,c,figma,git,github,bash" />
+  <img src="https://skillicons.dev/icons?i=html,css,js,react,python,c,figma,git,vite,github,bash" />
 </p>
 
  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
