@@ -24,7 +24,7 @@
 - 👯 I'm looking to collaborate on **open-source frontend projects and hackathons.**
 - 🤝 I'm looking for help with **building scalable architectures and mastering UI/UX design principles.**
 - 💬 Ask me about **frontend design, vibe coding, and building things from scratch.**
-- GOOGLE GEMINI STUDENT AMBASSADOR**
+- <b> GOOGLE GEMINI STUDENT AMBASSADOR. </b>
 
  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
  
