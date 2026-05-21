@@ -4,9 +4,20 @@
 
 <h1 align="center">Hi 👋, I'm Ansil Muhammed N S</h1>
 <h3 align="center">Experimentalist | B.Tech CSE Student </h3>-->
-<div align="center">      
+
+
+```
+█████╗ ███╗   ██╗███████╗██╗██╗     
+██╔══██╗████╗  ██║██╔════╝██║██║     
+███████║██╔██╗ ██║███████╗██║██║     
+██╔══██║██║╚██╗██║╚════██║██║██║     
+██║  ██║██║ ╚████║███████║██║███████╗
+╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝╚══════╝
+
+```
+<!-- <div align="center">      
       
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=200&section=header&text=Ansil%20Muhammed%20N%20S&fontSize=60&fontColor=ffffff&fontAlignY=38&desc=Frontend%20%E2%80%A2%20AI%20%E2%80%A2%20Experimenting&descAlignY=58&descSize=18&animation=fadeIn"/> 
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=200&section=header&text=Ansil%20Muhammed%20N%20S&fontSize=60&fontColor=ffffff&fontAlignY=38&desc=Frontend%20%E2%80%A2%20AI%20%E2%80%A2%20Experimenting&descAlignY=58&descSize=18&animation=fadeIn"/> -->
 
 </div>
 
