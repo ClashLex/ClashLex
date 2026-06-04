@@ -51,7 +51,7 @@
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=ClashLex&label=Profile%20Views&color=0e75b6&style=flat" alt="Profile Views" />
-  <img src="https://img.shields.io/github/followers/ClashLex?label=Followers&style=flat&color=181717" alt="Followers" />
+ <!-- <img src="https://img.shields.io/github/followers/ClashLex?label=Followers&style=flat&color=181717" alt="Followers" />-->
   <img src="https://img.shields.io/github/stars/ClashLex?affiliations=OWNER%2CCOLLABORATOR&style=flat&color=181717" alt="Stars" />
 </p>
 
