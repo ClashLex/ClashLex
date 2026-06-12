@@ -22,7 +22,11 @@
 </div>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&width=500&lines=Frontend+Web+Development;Experimenting+with+AI+Tools;Vibe+Coding+%E2%9A%A1" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&width=500&lines=Frontend+Web+Development;Experimenting+with+AI+Tools;Vibe+Coding+%E2%9A%A1" />
+    <source media="(prefers-color-scheme: light)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=005b96&center=true&vCenter=true&width=500&lines=Frontend+Web+Development;Experimenting+with+AI+Tools;Vibe+Coding+%E2%9A%A1" />
+    <img alt="Typing SVG" src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&width=500&lines=Frontend+Web+Development;Experimenting+with+AI+Tools;Vibe+Coding+%E2%9A%A1" />
+  </picture>
 </p>
 
  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
@@ -61,7 +65,11 @@
 ## 💻 Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=html,css,js,react,python,c,figma,git,vite,github,bash" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=html,css,js,react,python,c,figma,git,vite,github,bash" />
+    <source media="(prefers-color-scheme: light)" srcset="https://skillicons.dev/icons?i=html,css,js,react,python,c,figma,git,vite,github,bash&theme=light" />
+    <img alt="My Skills" src="https://skillicons.dev/icons?i=html,css,js,react,python,c,figma,git,vite,github,bash" />
+  </picture>
 </p>
 
  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
@@ -168,7 +176,11 @@
 </p>-->
 
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com?user=ClashLex&theme=tokyonight&hide_border=true" height="150" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-streak-stats.herokuapp.com?user=ClashLex&theme=tokyonight&hide_border=true" />
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-streak-stats.herokuapp.com?user=ClashLex&theme=github-light&hide_border=true" />
+    <img alt="GitHub Readme Streak Stats" src="https://github-readme-streak-stats.herokuapp.com?user=ClashLex&theme=tokyonight&hide_border=true" height="150" />
+  </picture>
 </p>
 <!-- CONTRIBUTION SNAKE -->
 <h2 align="center">
@@ -204,7 +216,11 @@
 ## ✍️ Random Dev Quote
 
 <p align="center">
-  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" alt="Random Dev Quote" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" />
+    <source media="(prefers-color-scheme: light)" srcset="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=light" />
+    <img alt="Random Dev Quote" src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" />
+  </picture>
 </p>
 
  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
@@ -216,4 +232,8 @@
 > *"Fake it till you make it"*
 
 </div>
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=120&section=footer"/>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=120&section=footer" />
+  <source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=waving&color=0:bbf2f6,50:86d3e3,100:3ca0e6&height=120&section=footer" />
+  <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=120&section=footer" />
+</picture>
