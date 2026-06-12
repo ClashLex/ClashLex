@@ -65,11 +65,7 @@
 ## 💻 Tech Stack
 
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=html,css,js,react,python,c,figma,git,vite,github,bash" />
-    <source media="(prefers-color-scheme: light)" srcset="https://skillicons.dev/icons?i=html,css,js,react,python,c,figma,git,vite,github,bash&amp;theme=light" />
-    <img alt="My Skills" src="https://skillicons.dev/icons?i=html,css,js,react,python,c,figma,git,vite,github,bash" />
-  </picture>
+  <img src="https://skillicons.dev/icons?i=html,css,js,react,python,c,figma,git,vite,github,bash" />
 </p>
 
  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
