@@ -225,7 +225,7 @@
 <div align="center">
 
 ## 💭 My Quote  
-> *"Fake it till you make it"*
+> *"Fake it till you make it.."*
 
 </div>
 <picture>
