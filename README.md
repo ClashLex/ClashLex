@@ -167,16 +167,16 @@
 
 ## 📊 GitHub Stats & Activity
 
-<p align="center">
-  <img src="https://github-stats-extended.vercel.app/api?username=ClashLex&show_icons=true&theme=radical&hide_border=true&count_private=true" height="170"/>
-  <img src="https://github-stats-extended.vercel.app/api/top-langs/?username=ClashLex&layout=compact&hide_border=true&theme=radical&langs_count=8&hide=jupyter%20notebook,tex,css,php" height="170"/>
-</p>
+<!--<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=ClashLex&show_icons=true&theme=radical&hide_border=true&count_private=true" height="170"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ClashLex&layout=compact&hide_border=true&theme=radical&langs_count=8&hide=jupyter%20notebook,tex,css,php" height="170"/>
+</p>-->
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-streak-stats.herokuapp.com?user=ClashLex&amp;theme=tokyonight&amp;hide_border=true" />
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-streak-stats.herokuapp.com?user=ClashLex&amp;theme=github-light&amp;hide_border=true" />
-    <img alt="GitHub Readme Streak Stats" src="https://github-readme-streak-stats.herokuapp.com?user=ClashLex&amp;theme=tokyonight&amp;hide_border=true" height="150" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=ClashLex&amp;theme=tokyonight&amp;hide_border=true" />
+    <source media="(prefers-color-scheme: light)" srcset="https://streak-stats.demolab.com?user=ClashLex&amp;theme=github-light&amp;hide_border=true" />
+    <img alt="GitHub Readme Streak Stats" src="https://streak-stats.demolab.com?user=ClashLex&amp;theme=tokyonight&amp;hide_border=true" height="150" />
   </picture>
 </p>
 <!-- CONTRIBUTION SNAKE -->
@@ -195,13 +195,13 @@
   </picture>
 </p>
 
- <p align="center">
+ <!--<p align="center">
   <img src="https://ghchart.rshah.org/a855f7/ClashLex" alt="GitHub Contribution Graph" /> 
 </p>
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=ClashLex&theme=react-dark&bg_color=20232a&hide_border=true" width="100%"/>
 
 
- <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a> 
+ <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a> -->
 
 <!-- ## 🏆 GitHub Trophies
 
