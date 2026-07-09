@@ -174,9 +174,9 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=ClashLex&amp;theme=tokyonight&amp;hide_border=true" />
-    <source media="(prefers-color-scheme: light)" srcset="https://streak-stats.demolab.com?user=ClashLex&amp;theme=github-light&amp;hide_border=true" />
-    <img alt="GitHub Readme Streak Stats" src="https://streak-stats.demolab.com?user=ClashLex&amp;theme=tokyonight&amp;hide_border=true" height="150" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.vercel.app/?user=ClashLex&amp;theme=tokyonight&amp;hide_border=true" />
+    <source media="(prefers-color-scheme: light)" srcset="https://streak-stats.vercel.app/?user=ClashLex&amp;theme=github-light&amp;hide_border=true" />
+    <img alt="GitHub Readme Streak Stats" src="https://streak-stats.vercel.app/?user=ClashLex&amp;theme=tokyonight&amp;hide_border=true" height="150" />
   </picture>
 </p>
 <!-- CONTRIBUTION SNAKE -->
