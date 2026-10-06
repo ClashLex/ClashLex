@@ -37,7 +37,7 @@
 ## 🌐 Connect with Me
 
 <p align="center">
-  <a href="https://twitter.com/ClashIt82009"><img src="https://img.shields.io/badge/-000000?style=for-the-badge&logo=x&logoColor=white"/></a>
+  <a href="https://twitter.com/Claashhhhh"><img src="https://img.shields.io/badge/-000000?style=for-the-badge&logo=x&logoColor=white"/></a>
   <a href="https://www.linkedin.com/in/ansil-muhammed-n-s-882449377"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" height="30"/></a>
   <a href="https://github.com/ClashLex"><img src="https://img.shields.io/badge/-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
   
