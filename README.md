@@ -1,10 +1,4 @@
-<!--<p align="center">
-  <img src="https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyNGFoaWRyOW0zcXpmaTdiZzI5ZXhpbzY4bHJwaWF6Zms4djdlejY3biZlcD12MV9naWZzX3NlYXJjaCZjdD1n/du3J3cXyzhj75IOgvA/200w.webp" width="180">
-</p>
-
-<h1 align="center">Hi 👋, I'm Ansil Muhammed N S</h1>
-<h3 align="center">Experimentalist | B.Tech CSE Student </h3>-->
-
+<div align="center">
 
 ```
 █████╗ ███╗   ██╗███████╗██╗██╗     
@@ -15,12 +9,7 @@
 ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝╚══════╝
 
 ```
-<!-- <div align="center">      
-      
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=200&section=header&text=Ansil%20Muhammed%20N%20S&fontSize=60&fontColor=ffffff&fontAlignY=38&desc=Frontend%20%E2%80%A2%20AI%20%E2%80%A2%20Experimenting&descAlignY=58&descSize=18&animation=fadeIn"/> -->
-
 </div>
-
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&amp;size=22&amp;duration=3000&amp;pause=1000&amp;color=00F7FF&amp;center=true&amp;vCenter=true&amp;width=500&amp;lines=Frontend+Web+Development;Experimenting+with+AI+Tools;Vibe+Coding+%E2%9A%A1" />
@@ -56,7 +45,6 @@
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=ClashLex&label=Profile%20Views&color=0e75b6&style=flat" alt="Profile Views" />
- <!-- <img src="https://img.shields.io/github/followers/ClashLex?label=Followers&style=flat&color=181717" alt="Followers" />-->
   <img src="https://img.shields.io/github/stars/ClashLex?affiliations=OWNER%2CCOLLABORATOR&style=flat&color=181717" alt="Stars" />
 </p>
 
@@ -70,107 +58,10 @@
 </p>
 
  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
-<!--
-
-## 🚀 Featured Projects
-
-<table align="center">
-  <tr>
-    <td width="50%" valign="top">
-      <h3 align="center">🕹️ Reiatsu </h3>
-      <p align="center">
-        <a href="https://github.com/ClashLex/bleach" target="_blank">
-          <img src="https://via.placeholder.com/400x200/1a1a2e/00F7FF?text=Project+Preview" width="100%" alt="Project Preview"/>
-        </a>
-      </p>
-      <p align="center">
-        A high level webcam experience with mediapipe.
-      </p>
-      <p align="center">
-        <img src="https://img.shields.io/badge/Html5-E34F26?style=flat&logo=html5&logoColor=white"/>
-        <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white"/>
-        <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black"/>
-      </p>
-      <p align="center">
-        <a href="https://clashlex.github.io/bleach"><img src="https://img.shields.io/badge/Live Demo-00F7FF?style=for-the-badge&logo=githubpages&logoColor=black"/></a>
-        <a href="https://github.com/ClashLex/bleach"><img src="https://img.shields.io/badge/Source-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
-      </p>
-    </td>
-    <td width="50%" valign="top">
-      <h3 align="center">🕹️ Cyber Slide</h3>
-      <p align="center">
-        <a href="https://github.com/ClashLex/Cyber-Slide" target="_blank">
-          <img src="./assets/cyberslide.png" width="100%" alt="Project Preview"/>
-        </a>
-      </p>
-      <p align="center">
-        CyberSlide is a classic sliding puzzle wrapped in a cyberpunk neon aesthetic
-      </p>
-      <p align="center">
-        <img src="https://img.shields.io/badge/React-E34F26?style=flat&logo=react&logoColor=white"/>
-        <img src="https://img.shields.io/badge/vite-1572B6?style=flat&logo=vite&logoColor=white"/>
-        <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black"/>
-      </p>
-      <p align="center">
-        <a href="https://clashlex.github.io/Cyber-Slide"><img src="https://img.shields.io/badge/Live Demo-00F7FF?style=for-the-badge&logo=githubpages&logoColor=black"/></a>
-        <a href="https://github.com/ClashLex/Cyber-Slide"><img src="https://img.shields.io/badge/Source-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top">
-      <h3 align="center">🕹️ Project Name</h3>
-      <p align="center">
-        <a href="https://github.com/ClashLex/YOUR-REPO" target="_blank">
-          <img src="https://via.placeholder.com/400x200/1a1a2e/00F7FF?text=Project+Preview" width="100%" alt="Project Preview"/>
-        </a>
-      </p>
-      <p align="center">
-        Short description of what this project does and what makes it cool.
-      </p>
-      <p align="center">
-        <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white"/>
-        <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white"/>
-        <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black"/>
-      </p>
-      <p align="center">
-        <a href="https://clashlex.github.io/YOUR-REPO"><img src="https://img.shields.io/badge/Live Demo-00F7FF?style=for-the-badge&logo=githubpages&logoColor=black"/></a>
-        <a href="https://github.com/ClashLex/YOUR-REPO"><img src="https://img.shields.io/badge/Source-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
-      </p>
-    </td>
-    <td width="50%" valign="top">
-      <h3 align="center">🕹️ Project Name</h3>
-      <p align="center">
-        <a href="https://github.com/ClashLex/YOUR-REPO" target="_blank">
-          <img src="https://via.placeholder.com/400x200/1a1a2e/00F7FF?text=Project+Preview" width="100%" alt="Project Preview"/>
-        </a>
-      </p>
-      <p align="center">
-        Short description of what this project does and what makes it cool.
-      </p>
-      <p align="center">
-        <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white"/>
-        <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white"/>
-        <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black"/>
-      </p>
-      <p align="center">
-        <a href="https://clashlex.github.io/YOUR-REPO"><img src="https://img.shields.io/badge/Live Demo-00F7FF?style=for-the-badge&logo=githubpages&logoColor=black"/></a>
-        <a href="https://github.com/ClashLex/YOUR-REPO"><img src="https://img.shields.io/badge/Source-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
-      </p>
-    </td>
-  </tr>
-    -->
-</table>
-
  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a>
 
 
 ## 📊 GitHub Stats & Activity
-
-<!--<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=ClashLex&show_icons=true&theme=radical&hide_border=true&count_private=true" height="170"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ClashLex&layout=compact&hide_border=true&theme=radical&langs_count=8&hide=jupyter%20notebook,tex,css,php" height="170"/>
-</p>-->
 
 <p align="center">
   <picture>
@@ -179,7 +70,6 @@
     <img alt="GitHub Readme Streak Stats" src="https://streak-stats.vercel.app/?user=ClashLex&amp;theme=tokyonight&amp;hide_border=true" height="150" />
   </picture>
 </p>
-<!-- CONTRIBUTION SNAKE -->
 <h2 align="center">
   <samp>🐍 CONTRIBUTION SNAKE 🐍</samp>
 </h2>
@@ -195,20 +85,6 @@
   </picture>
 </p>
 
- <!--<p align="center">
-  <img src="https://ghchart.rshah.org/a855f7/ClashLex" alt="GitHub Contribution Graph" /> 
-</p>
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=ClashLex&theme=react-dark&bg_color=20232a&hide_border=true" width="100%"/>
-
-
- <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"></a> -->
-
-<!-- ## 🏆 GitHub Trophies
-
-<div align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=ClashLex&theme=tokyonight&no-frame=true&row=2&column=4&margin-w=15&margin-h=15" />
-</div> -->
- 
 
 ## ✍️ Random Dev Quote
 
