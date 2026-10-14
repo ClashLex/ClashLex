@@ -10,6 +10,16 @@
 
 ```
 </div>
+
+<!-- commenting out below; uncomment to restore
+
+
+
+
+
+
+
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&amp;size=22&amp;duration=3000&amp;pause=1000&amp;color=00F7FF&amp;center=true&amp;vCenter=true&amp;width=500&amp;lines=Frontend+Web+Development;Experimenting+with+AI+Tools;Vibe+Coding+%E2%9A%A1" />
@@ -101,3 +111,4 @@
   <source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=waving&amp;color=0:bbf2f6,50:86d3e3,100:3ca0e6&amp;height=120&amp;section=footer" />
   <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:0f0c29,50:302b63,100:24243e&amp;height=120&amp;section=footer" />
 </picture>
+-->
