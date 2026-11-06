@@ -1,8 +1,8 @@
 # ANSIL - README rumble
 
-A direct adaptation of the supplied `inspiration.py`, recovered from repository
-history. The original 31-second animation, 88-pose library, six acts, characters,
-weapons, effects and scene transitions are preserved. The profile now reads:
+An adaptation of the supplied `inspiration.py`, recovered from repository
+history. Its 31-second animation, 88-pose library and six acts provide the fight
+choreography, with Ansil's bio and a custom Chopper cameo. The profile reads:
 
 > Hi, I'm Ansil.
 >
@@ -16,6 +16,13 @@ The reference's crossed-out diary line is removed. The three bio lines occupy
 its three action-bearing rows. The fight kicks `rebuild`, breaks through
 `things.`, and slices `break,`, `Experimenter.`, and `Undergraduate.`.
 All seven letters of `rebuild` use the reference's existing flight patterns.
+
+Chopper replaces the reference's teddy gag. The SVG drawing uses his original
+pink cross-marked hat, branching antlers, blue nose and hooves. He hops into the
+scene, grabs a boot to interrupt the fight, then tumbles away. The grip follows
+the animated foot through jumps and turns. Character reference:
+[Tony Tony Chopper / ONE PIECE](https://one-piece.com/character/chopper/index.html).
+The cameo is drawn entirely with SVG paths; no external image is loaded.
 
 ## Build and preview
 
@@ -63,7 +70,9 @@ in those slots, including punctuation. Update the mapping if those words change.
 The reference's layout engine measures the new text and supplies the action
 coordinates. `PALETTES` retains the original light and dark colors.
 
-The supplied engine is kept intact apart from deterministic clipping IDs.
+The supplied engine retains its pose and timing system, with deterministic
+clipping IDs. `Chopper` supplies the new mascot artwork, movement and boot grip;
+`CHOPPER_COLORS` controls his colors independently of the page theme.
 A portable font loader, accessible SVG metadata, the CLI, validation and
 preview/export tools provide the repository integration. The reference source
 fingerprint is recorded as `REFERENCE_SHA256` and in the validation report.
@@ -91,17 +100,15 @@ and executable/external content. It reports the actual file size and concurrent
 animation count; the full reference effects are retained, including their higher
 concurrency than the previous simplified animation.
 
-Tests check the exact bio, all seven kicked letters, the climb handoff, staged
-limb visibility, restored cut words, weapon geometry, world coordinates, the
+Tests check the exact bio, Chopper's boot contact and visibility, all seven
+kicked letters, the climb handoff, staged limb visibility, restored cut words,
+weapon geometry, world coordinates, the
 lead trim, deterministic IDs across Python hash seeds and stale asset detection.
 Browser rendering checks pixel equality at 0, 30.999 and 31.001 seconds and
 image embedding at desktop and mobile widths, including a check that pixels
 change while the SVG plays inside an image element. Results are written to
 `preview/render-report.json`.
 
-Before personalization, 77 sampled moments per theme were pixel-identical to
-the recovered reference under the same font and browser; the comparison is
-recorded in `preview/reference-comparison.json`. All reference functions
-and methods remain unchanged except `Word.svg` (stable IDs) and `render`
-(accessibility and player metadata). The seven-letter flight loop is the only
-choreography adjustment needed for the supplied bio.
+The reference fingerprint identifies the source of the choreography, not a
+claim that this personalized version is pixel-identical. Chopper's entrance,
+boot grab and exit replace the original mascot sequence within the same act.

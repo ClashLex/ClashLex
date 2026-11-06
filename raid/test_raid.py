@@ -40,6 +40,24 @@ class ReferenceTests(unittest.TestCase):
         self.assertEqual(raid.eval_num(raid.crawl.op, 3.86), 0)
         self.assertEqual(raid.eval_num(raid.red.op, 3.86), 1)
 
+    def test_chopper_stays_attached_through_hops_and_turns(self):
+        for i in range(85):
+            t = 13.28 + i * .005
+            x, y = raid.eval_num(raid.chopper.pos, t)
+            dx, dy = raid.chopper.grip_offset(t)
+            self.assertLess(math.dist((x + dx, y + dy), raid.red.world(t, 'RF')), .2,
+                            f'Chopper loses the boot at {t:.3f}s')
+
+    def test_chopper_cameo_leaves_before_reset(self):
+        for t, visible in ((0, 0), (12.47, 0), (12.6, 1), (13.9, 1), (14.12, 0), (31, 0)):
+            self.assertEqual(raid.eval_num(raid.chopper.op, t), visible)
+        self.assertLess(raid.eval_num(raid.chopper.pos, 13.86)[1], raid.FLOOR - 30)
+        root = ET.fromstring(self.svg)
+        self.assertIsNotNone(root.find('.//*[@id="chopper"]'))
+        metadata = json.loads(root.find('{http://www.w3.org/2000/svg}metadata').text)
+        self.assertTrue(any('Chopper' in beat[1] for beat in metadata['beats']))
+        self.assertNotIn('A bear', self.svg)
+
     def test_climb_reveals_hands_then_body_then_legs(self):
         stages = ((2.31, {'LA', 'RA'}), (3.1, {'LA', 'RA', 'H', 'torso'}),
                   (3.5, {'LA', 'RA', 'H', 'torso', 'RL'}),

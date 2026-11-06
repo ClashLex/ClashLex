@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """ANSIL / README rumble. Adapted directly from the supplied inspiration.py.
 
-The reference's poses, timing, characters, props, effects and six-act fight are
-preserved. Profile copy and word targets are configured below; repository
-integration adds portable font loading, stable IDs, validation and previews.
+The reference's poses, timing and six-act fight underpin Ansil's profile and a
+custom Chopper cameo. Profile copy and word targets are configured below;
+repository integration adds portable fonts, stable IDs, validation and previews.
 
 python raid/make_raid.py
 python raid/make_raid.py --check
@@ -82,7 +82,9 @@ PALETTES = {
 VOID_RIM = "#8f7cff"
 BLOCK_GREEN = ["#5d9b3c", "#6fb04a", "#4e8a32"]
 BLOCK_BROWN = ["#8a5a3c", "#9c6b47", "#74492f", "#a97a52"]
-BEAR_COL = "#a0673d"
+CHOPPER_COLORS = dict(fur="#dba86d", muzzle="#f6d9aa", ink="#573b2b",
+                     antlers="#b77d48", hat="#e979a6", brim="#c84d80",
+                     nose="#238ed0", shorts="#9c4a75", hoof="#634334")
 SPLINES = {"lin": "0 0 1 1", "in": "0.55 0 1 1", "out": "0 0 0.45 1", "inout": "0.45 0 0.55 1", "snap": "0 0 0.15 1"}
 
 # the page heals while it is hidden inside the void (see ACT 6 for the window)
@@ -93,7 +95,7 @@ RESTORE = (27.23, 28.23)
 # Display times include the reference's quarter-second lead trim.
 REFERENCE_SHA256 = "beada4909758073238404924e9fae339702c6db2f41c6b00d53b5e80cbdc1737"
 ALT = ('Ansil / ClashLex: two stick figures break into a profile README, fight '
-       'across its words with a sword, clones, a laser and a collapsing wall, '
+       'across its words with a sword, a Chopper cameo, clones, a laser and a collapsing wall, '
        'then disappear into a void as the page rebuilds.')
 ACTS = [('01-break-in', 0., 5.53), ('02-challenge', 5.53, 7.91),
         ('03-chase', 7.91, 11.89), ('04-escalation', 11.89, 17.73),
@@ -114,7 +116,7 @@ BEATS = [
     (9.97, 'A third rising cut finishes the chase', 'third cut'),
     (10.87, 'The sword sticks in the floor', 'sword'),
     (11.65, 'A kick interrupts the pulling', 'kick'),
-    (12.35, 'A bear joins the argument', 'bear'),
+    (12.35, 'Chopper rushes in and grabs a boot', 'Chopper'),
     (13.85, 'Three clones arrive; two collide', 'clones'),
     (15.55, 'A laser meets a wall of wind', 'laser / windwall'),
     (16.93, 'A flying kick tears through the wall', 'sword throw'),
@@ -1666,7 +1668,7 @@ jolt(12.26, 1)
 dust(470, FLOOR, 12.26)
 ink.pose(12.04, "stand", 0.1)
 
-# ================================================================ ACT 4  bear, clones, laser  (12.08 - 16.88)
+# ================================================================ ACT 4  Chopper, clones, laser  (12.08 - 16.88)
 ink.pose(12.14, "whistle", 0.1)
 RD.shake(12.18, 12.48, 1.2)
 poof(640, FLOOR - 8, 12.48, 0.8)
@@ -1674,7 +1676,11 @@ ink.pose(12.58, "hips", 0.1)
 ink.idle(12.58, 13.43, "hips", 0.45)
 
 
-class Bear:
+class Chopper:
+    """A vector cameo in Chopper's original pink hat; feet sit at local y=0."""
+    PIVOT_Y = -12
+    GRIP = (10, 0)
+
     def __init__(self):
         self.pos, self.sx, self.sc, self.op, self.rot = Track((640.0, float(FLOOR))), Track(-1), Track(0.0), Track(0), Track(0.0)
 
@@ -1685,13 +1691,32 @@ class Bear:
             s = i / 6
             self.pos.add(t0 + (t1 - t0) * s, (x0 + (x - x0) * s, y0 + (y - y0) * s - 4 * h * s * (1 - s)))
 
-    def scurry(self, t0, t1, x1, bounce=3):
+    def scurry(self, t0, t1, x1, y1, bounce=3):
         self.pos.hold(t0)
         x0, y0 = self.pos.v
-        k = max(4, int((t1 - t0) / 0.05))
+        k = max(12, int((t1 - t0) / 0.02))
         for i in range(1, k + 1):
             s = i / k
-            self.pos.add(t0 + (t1 - t0) * s, (x0 + (x1 - x0) * s, y0 - abs(math.sin(s * k * math.pi)) * bounce))
+            self.pos.add(t0 + (t1 - t0) * s, (x0 + (x1 - x0) * s, y0 + (y1 - y0) * s - abs(math.sin(s * 3 * math.pi)) * bounce))
+
+    def grip_offset(self, t):
+        """Apply the same scale then rotation as the SVG, before translation."""
+        scale = eval_num(self.sc, t)
+        x = self.GRIP[0] * eval_step(self.sx, t) * scale
+        y = self.GRIP[1] * scale - self.PIVOT_Y
+        angle = math.radians(eval_num(self.rot, t))
+        ca, sa = math.cos(angle), math.sin(angle)
+        return x * ca - y * sa, self.PIVOT_Y + x * sa + y * ca
+
+    def follow_boot(self, actor, t0, t1):
+        # Include facing/pose boundaries so the grip follows even a quick turn.
+        times = {round(t0 + (t1 - t0) * i / 84, 5) for i in range(1, 85)}
+        for track in (actor.pos, actor.sx, actor.sq, actor.rot, actor.pz, self.rot):
+            times.update(t for t, _, _ in track.keys if t0 < t <= t1)
+        for t in sorted(times):
+            fx, fy = actor.world(t, "RF")
+            dx, dy = self.grip_offset(t)
+            self.pos.add(t, (fx - dx, fy - dy))
 
     def svg(self, p):
         times = sorted({k[0] for k in self.sx.keys} | {k[0] for k in self.sc.keys})
@@ -1701,28 +1726,36 @@ class Bear:
                 continue
             s, q = eval_step(self.sx, tt), eval_num(self.sc, tt)
             sc.add(tt, (s * q, q))
-        body = (f'<circle cx="-3.6" cy="-10.5" r="1.9" fill="{BEAR_COL}"/><circle cx="3.6" cy="-10.5" r="1.9" fill="{BEAR_COL}"/>'
-                f'<circle cx="0" cy="-8" r="4.4" fill="{BEAR_COL}"/><ellipse cx="0" cy="-2.8" rx="4.6" ry="3.2" fill="{BEAR_COL}"/>'
-                f'<circle cx="-1.6" cy="-9.58" r="0.7" fill="{p["bg"]}"/><circle cx="1.6" cy="-9.58" r="0.7" fill="{p["bg"]}"/>'
-                f'<circle cx="0" cy="-6.6" r="0.8" fill="{p["bg"]}"/>'
-                f'<path d="M-2.5,-1 L-3,0.5 M2.5,-1 L3,0.5" stroke="{BEAR_COL}" stroke-width="2" stroke-linecap="round"/>')
-        return ('<g opacity="0">' + animate("opacity", self.op, str) + animate_tf("translate", self.pos, f_xy) + "<g>"
-                + animate_tf("rotate", self.rot, lambda a: f"{n(a)} 0 -6") + "<g>"
+        c = CHOPPER_COLORS
+        antlers = 'M-6,-19 L-11,-23 L-12,-29 M-11,-24 L-15,-25 L-16,-28 M-12,-27 L-9,-29 M6,-19 L11,-23 L12,-29 M11,-24 L15,-25 L16,-28 M12,-27 L9,-29'
+        body = (
+            # A paper outline keeps the antlers visible against either theme.
+            f'<path d="{antlers}" fill="none" stroke="{p["bg"]}" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<path d="{antlers}" fill="none" stroke="{c["antlers"]}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<g stroke="{c["ink"]}" stroke-width=".65" stroke-linejoin="round">'
+            f'<path d="M-4,-4 L-4.5,-.8 L-1.5,-.8 L-1,-4 M1,-4 L1.5,-.8 L4.5,-.8 L4,-4" fill="{c["fur"]}"/>'
+            f'<path d="M-4.7,-1.8 H-1.4 V0 H-4.7 Z M1.4,-1.8 H4.7 V0 H1.4 Z" fill="{c["hoof"]}"/>'
+            f'<ellipse cx="0" cy="-6.6" rx="4.5" ry="5" fill="{c["fur"]}"/>'
+            f'<path d="M-4.4,-5.5 Q0,-4.3 4.4,-5.5 L4,-2.7 H.5 L0,-4 L-.5,-2.7 H-4 Z" fill="{c["shorts"]}"/>'
+            f'<path d="M-4,-9 Q-7,-8 -7,-4 L-5.2,-3.5 L-2.8,-7 M3.8,-9 Q7,-5 10,-1 L8,-.7 L2.7,-6.5" fill="{c["fur"]}"/>'
+            f'<path d="M-7,-4 L-5.2,-3.5 L-5.7,-2 L-7.5,-2.6 Z" fill="{c["hoof"]}"/>'
+            f'<ellipse id="chopper-grip" cx="{self.GRIP[0]}" cy="{self.GRIP[1]}" rx="1.4" ry="1" fill="{c["hoof"]}"/>'
+            f'<path d="M-5,-16 Q-11,-19 -9.5,-14 L-5,-12 M5,-16 Q11,-19 9.5,-14 L5,-12" fill="{c["fur"]}"/>'
+            f'<ellipse cx="0" cy="-12.7" rx="6.8" ry="5.6" fill="{c["fur"]}"/>'
+            '</g>'
+            f'<ellipse cx="0" cy="-10.7" rx="4" ry="2.4" fill="{c["muzzle"]}"/>'
+            f'<g fill="{c["ink"]}"><ellipse cx="-2.5" cy="-13.6" rx=".95" ry="1.3"/><ellipse cx="2.5" cy="-13.6" rx=".95" ry="1.3"/></g>'
+            '<g fill="#fff"><circle cx="-2.7" cy="-14" r=".32"/><circle cx="2.3" cy="-14" r=".32"/></g>'
+            f'<ellipse cx="0" cy="-11.5" rx="1.4" ry=".95" fill="{c["nose"]}"/>'
+            f'<path d="M0,-10.5 V-9.6 M-1.5,-9.8 Q0,-8.4 1.5,-9.8" fill="none" stroke="{c["ink"]}" stroke-width=".6" stroke-linecap="round"/>'
+            f'<path d="M-8,-18 L-7,-26 Q0,-28 7,-26 L8,-18 Z" fill="{c["hat"]}" stroke="{c["brim"]}" stroke-width=".8"/>'
+            f'<path d="M-9,-18.7 Q0,-16.7 9,-18.7 L9,-16.7 Q0,-14.7 -9,-16.7 Z" fill="{c["brim"]}"/>'
+            '<path d="M-2.3,-24.7 L2.3,-20.1 M2.3,-24.7 L-2.3,-20.1" fill="none" stroke="#fff" stroke-width="2"/>'
+        )
+        return ('<g id="chopper" opacity="0">' + animate("opacity", self.op, str) + animate_tf("translate", self.pos, f_xy) + "<g>"
+                + animate_tf("rotate", self.rot, lambda a: f"{n(a)} 0 {self.PIVOT_Y}") + "<g>"
                 + animate_tf("scale", sc, lambda v: f"{f_s(v[0])} {f_s(v[1])}") + body + "</g></g></g>")
 
-
-bear = Bear()
-bear.op.set(12.48, 1)
-bear.sc.hold(12.48 - EPS)
-bear.sc.add(12.48, 0.0)
-bear.sc.add(12.6, 1.7, "out")
-bear.sc.add(12.7, 1.35, "inout")
-bear.hop(12.74, 12.88, 616, FLOOR, 12)          # a little excited hop first
-bear.scurry(12.92, 13.28, 470 + 14)
-bear.rot.hold(12.92)
-for i in range(1, 8):
-    bear.rot.add(12.92 + 0.05 * i, (8 if i % 2 else -8))
-bear.rot.add(13.28, 0.0)
 
 red.pose(12.43, "crouch", 0.15, "inout")
 red.pose(12.68, "stand", 0.12)
@@ -1730,30 +1763,42 @@ red.face(12.68, 1)
 red.idle(12.68, 13.03, "stand", 0.35)
 red.pose(13.06, "fall", 0.06)
 mark("!", *red.head_mark(13.11), 13.08, 0.4)
-# the bite: the bear hangs on Red's front foot while he hops around
-red.pose(13.28, "hit", 0.05)
+# Chopper tries to stop the scuffle by grabbing Red's boot.
+red.pose(13.28, "fall", 0.05)
 red.stay(13.28)
 for i in range(3):
     red.jump(13.28 + 0.14 * i, 13.42 + 0.14 * i, 470 + (6 if i % 2 else -6), FLOOR, 7)
 red.face(13.43, -1)
 red.face(13.58, 1)
-bear.pos.hold(13.28)
-for tt in [13.28 + 0.02 * i for i in range(1, 22)]:
-    rx, ry = eval_num(red.pos, tt)
-    bear.pos.add(tt, (rx + 12, ry))
-bear.rot.add(13.29, -25, "out")
-for i in range(1, 6):
-    bear.rot.add(13.29 + 0.08 * i, -25 + (12 if i % 2 else -12))
 red.pose(13.72, "kick", 0.06, "snap")
-bear.rot.add(13.74, 0.0, "out")
-bear.hop(13.74, 13.98, 622, FLOOR, 50)
-bear.rot.add(13.98, 40, "in")
-bear.rot.add(14.06, -15, "out")
-bear.rot.add(14.12, 0, "inout")
+red.pose(13.84, "guard", 0.1)
+
+chopper = Chopper()
+chopper.op.set(12.48, 1)
+chopper.sc.hold(12.48 - EPS)
+chopper.sc.add(12.48, 0.0)
+chopper.sc.add(12.6, 1.2, "out")
+chopper.sc.add(12.7, 1.0, "inout")
+chopper.hop(12.74, 12.88, 616, FLOOR, 12)
+chopper.rot.hold(12.92)
+for i in range(1, 8):
+    chopper.rot.add(12.92 + 0.05 * i, (8 if i % 2 else -8))
+chopper.rot.add(13.28, 0.0)
+chopper.rot.add(13.29, -12, "out")
+for i in range(1, 6):
+    chopper.rot.add(13.29 + 0.08 * i, -12 + (6 if i % 2 else -6))
+chopper.rot.add(13.74, 0.0, "out")
+chopper.rot.add(13.98, 40, "in")
+chopper.rot.add(14.06, -15, "out")
+chopper.rot.add(14.12, 0, "inout")
+_boot_x, _boot_y = red.world(13.28, "RF")
+_grip_x, _grip_y = chopper.grip_offset(13.28)
+chopper.scurry(12.92, 13.28, _boot_x - _grip_x, _boot_y - _grip_y)
+chopper.follow_boot(red, 13.28, 13.7)
+chopper.hop(13.74, 13.98, 622, FLOOR, 50)
 dust(622, FLOOR, 13.98)
 poof(622, FLOOR - 6, 14.1, 0.9)
-bear.op.set(14.12, 0)
-red.pose(13.84, "guard", 0.1)
+chopper.op.set(14.12, 0)
 
 # shadow clones
 red.pose(13.96, "sign", 0.12)
@@ -2591,9 +2636,9 @@ def render(theme):
     out.append(void_svg(p))
     out.append('<g clip-path="url(#pageclip)">' + crawl.svg(p["red"], limb_ops=True, halo=p["bg"]) + "</g>")
     out.append(hole_svg(p, edge_only=True))
+    out.append(chopper.svg(p))
     out.append(red.svg(p["red"], weapons=p, katana_win=(6.0, 17.4), pick_win=(24.8, 26.4)))
     out.extend(fn(p) for fn in LAYERS["over_red"])
-    out.append(bear.svg(p))
     out.append(ink.svg(p["void_fg"], op_track=VOID_WIN))
     for name in ("fx_high", "marks", "top"):
         out.extend(fn(p) for fn in LAYERS[name])
@@ -2789,7 +2834,7 @@ def bundle(outdir,files):
             archive.write(outdir/name,'raid/'+name)
         for path in files.values():
             archive.write(path,'raid/'+path.name)
-        preview_names = ['render-report.json', 'controls-report.json', 'reference-comparison.json', 'readme-embedding-report.json', 'player-desktop.png', 'player-mobile.png']
+        preview_names = ['render-report.json', 'controls-report.json', 'readme-embedding-report.json', 'chopper-report.json', 'chopper-contact-sheet.png', 'player-desktop.png', 'player-mobile.png']
         for theme in PALETTES:
             preview_names.extend(f'{theme}-{name}.jpg' for name, _, _ in ACTS)
             preview_names.extend([f'{theme}-storyboard.jpg', f'raid-{theme}.gif', f'raid-{theme}.mp4'])
