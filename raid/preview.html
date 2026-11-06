@@ -3,18 +3,67 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>raid preview</title>
+<title>ANSIL — below deck / screening room</title>
 <style>
-  body { margin: 0; font: 14px system-ui, sans-serif; }
-  .panel { padding: 24px 16px; display: flex; justify-content: center; }
-  .panel img { width: 100%; max-width: 830px; height: auto; display: block; }
-  .light { background: #ffffff; color: #1f2328; }
-  .dark  { background: #0d1117; color: #e6edf3; }
-  p { margin: 0; padding: 8px 16px 0; text-align: center; opacity: .6; }
+:root{color-scheme:dark;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:#dbe1db;background:#11171d}*{box-sizing:border-box}body{margin:0}main{max-width:1150px;margin:auto;padding:42px 28px 64px}header{display:flex;justify-content:space-between;align-items:end;gap:24px;padding-bottom:27px;border-bottom:1px solid #354048}.eyebrow{color:#94a19e;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin:0 0 12px}h1{font-family:Georgia,serif;font-size:clamp(34px,5vw,58px);font-weight:400;letter-spacing:-.04em;margin:0}.edition{text-align:right;color:#94a19e;font-size:11px;line-height:1.9}.edition strong{color:#eb967b;font-weight:400}.toolbar{display:flex;align-items:center;gap:12px;padding:20px 0;flex-wrap:wrap}button,select{color:inherit;background:transparent;border:1px solid #465159;border-radius:4px;padding:9px 13px;font:inherit;font-size:12px;cursor:pointer}button:hover,select:hover{border-color:#eb967b}button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #eb967b;outline-offset:4px}button:disabled{opacity:.4;cursor:wait}.toolbar label{margin-left:auto;font-size:12px;color:#94a19e}select{background:#11171d}.screen{background:#faf8f3;border:1px solid #354048;border-radius:4px;overflow:hidden}.screen svg,.screen img{display:block;width:100%;height:auto}.timeline{display:flex;gap:18px;align-items:center;padding:21px 0 12px}input[type=range]{flex:1;min-width:0;accent-color:#eb967b;cursor:pointer}output{font-variant-numeric:tabular-nums;font-size:12px;min-width:105px;text-align:right}.acts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.acts button{text-align:left;border:0;border-top:2px solid #354048;border-radius:0;padding:12px 0;line-height:1.8;color:#94a19e}.acts button.active{color:#eb967b;border-color:#eb967b}.acts span{display:block;font-size:10px;color:#94a19e}.note{margin:16px 0 24px;color:#94a19e;font-size:12px;line-height:1.8}.bottom{display:flex;gap:16px;align-items:start;justify-content:space-between;border-top:1px solid #354048;padding-top:24px}#beat{max-width:640px;line-height:1.7;font-size:13px;margin:0}.links{display:flex;gap:18px;white-space:nowrap;font-size:12px}a{color:#cbd2cc;text-underline-offset:4px}.fine{color:#94a19e;margin-top:34px;font-size:10px;line-height:1.8}@media(max-width:600px){main{padding:24px 16px 40px}header{align-items:start}.edition{font-size:10px}.toolbar{gap:8px}.toolbar label{margin-left:0}.acts{gap:12px}.acts button{font-size:10px}.bottom{flex-direction:column;gap:20px}}
+.field{display:flex;align-items:center;gap:10px;margin-left:auto}@media(max-width:600px){.toolbar{display:grid;grid-template-columns:1fr 1fr}.field{margin-left:0;justify-content:space-between}.field select{flex:1}.toolbar>button{width:100%}}
 </style>
 </head>
 <body>
-  <div class="light"><p>light</p><div class="panel"><img src="raid-light.svg" alt="light"></div></div>
-  <div class="dark"><p>dark</p><div class="panel"><img src="raid-dark.svg" alt="dark"></div></div>
+<main>
+<header><div><p class="eyebrow">A little trouble in the letters</p><h1>Below deck.</h1></div><div class="edition"><strong>ANSIL / 02</strong><br>34 seconds · four acts<br>Light &amp; dark</div></header>
+<div class="toolbar"><button id="play" disabled aria-label="Pause animation">Pause</button><button id="restart" disabled>From the top</button><label for="theme">Paper</label><select id="theme"><option value="light">Light</option><option value="dark">Dark</option></select><label for="speed">Speed</label><select id="speed"><option value="0.5">½×</option><option value="1" selected>1×</option><option value="1.5">1½×</option></select></div>
+<div class="screen" id="screen"><picture><source media="(prefers-reduced-motion: reduce)" srcset="raid-light-static.svg"><img src="raid-light.svg" alt="ANSIL: a pirate chase through the letters and below deck."></picture></div>
+<div class="timeline"><label for="time" class="eyebrow" style="margin:0">Reel</label><input id="time" type="range" min="0" max="33.999" step="0.01" value="0" aria-label="Animation time" disabled><output id="clock" for="time">00.00 / 34.00</output></div>
+<nav class="acts" aria-label="Jump to an act"><button data-time="0" class="active">01 / Arrival<span>00.0 — 06.6</span></button><button data-time="6.6">02 / The chase<span>06.6 — 13.2</span></button><button data-time="13.2">03 / Below deck<span>13.2 — 22.0</span></button><button data-time="22">04 / The return<span>22.0 — 34.0</span></button></nav>
+<p id="status" class="note" role="status">Loading the screening controls…</p>
+<div class="bottom"><p id="beat">A quiet page, before the trouble starts.</p><div class="links"><a id="asset" href="raid-light.svg" download>SVG</a><a href="README.md">Beat sheet ↗</a></div></div>
+<p class="fine">Original characters. Vector ASCII. The profile banner plays entirely through SVG animation; these controls belong to the screening room.</p>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const beats = [[0.6,'A ripple travels A to L.'],[1,'The rope brings a pirate; A supplies a kick and L catches the landing.'],[2.6,'The I becomes a mast. A flag goes up.'],[3.8,'A dagger pins a wanted notice to the middle of the S.'],[4.8,'An officer descends the N, one step at a time.'],[5.8,'Poster. Pirate. Poster. The spyglass confirms it.'],[6.6,'A whistle, then a chase down the S.'],[7.4,'Three blade contacts separate its shelves.'],[8.5,'A rope saves the pirate; the falling flag blinds the officer.'],[9.6,'A blind swing cuts the I at its foot.'],[10.7,'The mast falls. Neither of them can stop it.'],[12,'The I hits the deck. Cracks race out.'],[13.2,'The page opens, and both fall through.'],[14.4,'Below deck: barrels and a swinging lantern.'],[15.4,'The officer finds somewhere to leave his sword.'],[16.4,'A rolling barrel, a balancing pirate, a stubborn sword.'],[17.8,'The dagger returns, this time as a fire starter.'],[18.8,'The officer chases the spark.'],[20,'One barrel, then another, then another.'],[22,'Up through the hole and into ANSIL.'],[23.4,'The L catches the officer.'],[25,'The fragments remember where they belong.'],[28.2,'A hat tip. A smaller, rather different flag.'],[31,'The opening rope returns. The page puts itself right.']];
+let svg, t = 0, running = !matchMedia('(prefers-reduced-motion: reduce)').matches, last, generation = 0;
+function update() {
+  if (svg) svg.setCurrentTime(t);
+  $('time').value = t;
+  $('clock').textContent = t.toFixed(2).padStart(5,'0') + ' / 34.00';
+  $('play').textContent = running ? 'Pause' : 'Play';
+  $('play').setAttribute('aria-label', running ? 'Pause animation' : 'Play animation');
+  const beat = [...beats].reverse().find(([at]) => t >= at);
+  $('beat').textContent = beat ? beat[1] : 'A quiet page, before the trouble starts.';
+  const act = t < 6.6 ? 0 : t < 13.2 ? 1 : t < 22 ? 2 : 3;
+  document.querySelectorAll('[data-time]').forEach((button,i) => { button.classList.toggle('active',i === act); button.setAttribute('aria-current',i === act ? 'step' : 'false'); });
+}
+async function load() {
+  const token = ++generation, theme = $('theme').value;
+  try {
+    const response = await fetch('raid-' + theme + '.svg');
+    if (!response.ok) throw new Error('Unable to load the animation');
+    const doc = new DOMParser().parseFromString(await response.text(),'image/svg+xml');
+    if (doc.querySelector('parsererror')) throw new Error('Invalid SVG');
+    if (token !== generation) return;
+    svg = document.importNode(doc.documentElement,true);
+    $('screen').replaceChildren(svg); svg.pauseAnimations();
+    $('screen').style.background = theme === 'light' ? '#faf8f3' : '#11171d';
+    ['play','restart','time'].forEach(id => $(id).disabled = false);
+    $('asset').href = 'raid-' + theme + '.svg';
+    $('status').textContent = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'Motion starts paused to match your preference. Play whenever you like.' : 'Pause, scrub, or jump between acts. Change paper without losing your place.';
+    update();
+  } catch(error) {
+    $('status').textContent = 'For timeline controls, serve the repository with python -m http.server 8000 and open localhost:8000/raid/preview.html. The banner above plays on its own.';
+  }
+}
+$('play').onclick = () => { running = !running; update(); };
+$('restart').onclick = () => { t = 0; update(); };
+$('time').oninput = event => { t = Number(event.target.value); running = false; update(); };
+$('theme').onchange = load;
+document.querySelectorAll('[data-time]').forEach(button => button.onclick = () => { t = Number(button.dataset.time); update(); });
+function tick(now) {
+  if (last && svg && running && !document.hidden) { t = (t + Math.min((now-last)/1000,.1)*Number($('speed').value)) % 34; update(); }
+  last = now; requestAnimationFrame(tick);
+}
+load(); requestAnimationFrame(tick);
+</script>
 </body>
 </html>

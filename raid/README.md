@@ -1,99 +1,130 @@
-# the raid
+# ANSIL — below deck
 
-The top of the profile README looks like plain text. It isn't. `raid-light.svg` and
-`raid-dark.svg` are 31-second looping animated SVGs (pure SMIL: no JavaScript, no CSS,
-no external files), so GitHub renders them as-is inside `<img>`.
+A 34-second loop in four acts. A pirate turns the I into a mast, an officer cuts
+his way down the S, and the fallen mast breaks the deck. A chase among barrels
+below launches them back through the banner. Its fragments reverse their fall,
+rebuilding A, N, S, I, L. A surrender flag and the returning rope close the loop.
 
-`make_raid.py` generates both. One file, no framework.
+The profile uses self-contained SMIL SVGs: no scripts, CSS animation, fonts to
+download, images, filters, or external references. Light and dark are palette
+variants. Static SVGs provide a reduced-motion alternative.
 
+## Build and watch
+
+Python 3.12 or later; building and linting use only the standard library.
+
+```sh
+python raid/make_raid.py
+python raid/make_raid.py --check
+python -m unittest discover -s raid -p "test_*.py"
+python raid/make_raid.py --out build/raid
+python -m http.server 8000
 ```
-pip install pillow
-python3 make_raid.py              # writes raid-light.svg + raid-dark.svg
-python3 make_raid.py --preview    # also saves PNG frames to ./preview
-                                  # (pip install playwright && playwright install chromium)
+
+Open `http://localhost:8000/raid/preview.html` for play/pause, a timeline, act
+navigation, speed, and theme controls. Opening the HTML directly still displays
+the banner; the controls need HTTP because they load the SVG document.
+
+For the complete render package:
+
+```sh
+python -m pip install pillow playwright imageio-ffmpeg
+python -m playwright install chromium
+python raid/make_raid.py --preview --export
 ```
 
-Open `preview.html` in a browser to see both themes side by side before you push.
+An installed Chrome/Chromium can be selected with `--browser /path/to/browser`.
+On Windows, quote the path, for example
+`--browser "C:\Program Files\Google\Chrome\Application\chrome.exe"`.
+`--fps` defaults to 12. Missing preview/export dependencies fail with a nonzero
+status rather than silently omitting the requested artifacts.
 
-## Edit the banner
+The output includes:
 
-The page content is ASCII art. `ART_RAW`, `LETTER_COLS`, `ALT` and the `POSTER_*` strings
-sit at the top of `make_raid.py`.
+- `raid-{light,dark}.svg` and matching `-static.svg` files.
+- `validation.json`: size, track/element counts, concurrency, poses and hashes.
+- `preview/{theme}/frame-*.png`: every frame at the selected rate.
+- `preview/{theme}-01-arrival.jpg` through `04-return.jpg`: all frames per act.
+- `preview/{theme}-storyboard.jpg`: a compact 24-beat overview.
+- `preview/raid-{theme}.gif` and `.mp4` when `--export` is selected.
+- `preview/render-report.json`: browser embedding and pixel-equal loop checks.
+- `ansil-raid.zip`: SVGs, available source/docs and shareable previews.
 
-- `ART_RAW`: paste any block-letter ASCII art made of `█ ╗ ╔ ╝ ╚ ═ ║` (for example from
-  patorjk.com, font "ANSI Shadow"). It is drawn as vector shapes, not font text, so it
-  looks identical everywhere.
-- `LETTER_COLS`: one `(start_col, end_col)` pair per letter. Each letter becomes its own
-  piece, so the officer cuts them one by one. Count columns in the art; every letter is
-  the same row width.
-- Sized by `CW, CH` (one character cell in px) and placed by `X0, Y0`. Keep the banner
-  under about 460px wide so it stays clear of the poster at x≈655.
-- If a paste drops the leading space of the first row, the script repairs it.
+PNG frames, contact sheets, video files and the release zip are local build
+artifacts and ignored by Git. The four SVGs and `validation.json` are committed.
 
-## The story (seconds)
+## Beat sheet
 
-The fight happens on top of the ANSIL banner. The letter tops are the platform, and each letter
-gives under a foot, jumps when hit, and can be cut out from under someone.
+| Time | Action | Mechanism / callback |
+| --- | --- | --- |
+| 0.6 | A ripple travels A to L | footfalls |
+| 1.0 | Rope swing, A apex kick, L ledge landing | rope / A / L |
+| 2.6 | Climb the I and tie a flag | I / flag |
+| 3.8 | Dagger pins a wanted notice to the S | dagger / poster |
+| 4.8 | Officer descends onto the N staircase | N / rope |
+| 5.8 | Poster, pirate, poster: the spyglass confirms it | poster |
+| 6.6 | A whistle; the pirate drops down the S | S shelves |
+| 7.4 | Three blade contacts separate the S shelves | S / sword |
+| 8.5 | Flag rope swing; a slash drops the flag on the officer | flag / rope |
+| 9.6 | Blinded swing cuts the I at its foot | flag / I |
+| 10.7 | The I falls like a mast; both try to stop it | I |
+| 12.0 | The mast hits the deck; cracks race out | I / hole |
+| 13.2 | The letters lean in; both fall through | hole |
+| 14.4 | Below deck: a lantern reveals the barrel room | hole / lantern |
+| 15.4 | The officer sticks his sword into a barrel | sword |
+| 16.4 | Pirate balances on a rolling barrel; officer pulls | barrel / sword |
+| 17.8 | The dagger strikes a spark on the fuse | dagger / fuse |
+| 18.8 | Officer chases the spark; the pirate ducks | fuse |
+| 20.0 | Three barrels burst in sequence | barrels / fuse |
+| 22.0 | Blast through the hole; ANSIL shatters from below | hole / letters |
+| 23.4 | Officer wedges into the L while rubble falls | L |
+| 25.0 | Fragments reverse their fall and lock A to L | letters / heal |
+| 28.2 | Pirate tips his hat; a surrender flag emerges from L | flag / L |
+| 31.0 | Opening rope returns; the pirate leaves; the deck heals | rope / hole |
 
-| t | beat |
-|---|------|
-| 0.7 | distant boom, the banner shivers |
-| 1.0 | pirate swings in on a rope, flips onto the L |
-| 2.7 | dagger pins the bounty poster |
-| 3.8 | navy officer leaps in from off-page, flipping, lands on the A |
-| 5.3 | low air-slash skims the banner, the pirate hops it, it cuts the poster |
-| 6.1 | officer runs the tops of the letters, each one dips under his foot |
-| 7.3 | three sword clashes; the last one cracks each letter in proportion to its distance from the blow |
-| 9.0 | pirate's spin; officer flips over it and lands behind him |
-| 10.6 | wind-up, then a chop cuts the I out from under the pirate |
-| 11.2 | officer stabs the floor, sword sticks, pirate rolls clear |
-| 12.6 | pirate kicks him in the back into the A, which loses a chunk from the corner he hit |
-| 15.0 | officer dashes back, yanks the sword out, second duel |
-| 16.9 | pirate is disarmed, his sword spins into the floor |
-| 17.5 | cannon pops up, pirate hops it and lights the fuse |
-| 19.1 | BOOM: officer is launched left through every letter, each one breaking where he hits it |
-| 20.9 | a horn: six sailors pour in from the left |
-| 22.5 | pirate relights the cannon, the line charges, sees the fuse, skids |
-| 23.2 | BOOM: the ball bowls through the line, then bounces off the letters and the banner collapses |
-| 25.2 | the opening rope drops again, pirate grabs it and is hauled out of the page |
-| 27.0 | a tide sweeps the page and restores everything for the loop |
+Beat times mark setups; holds, secondary motion, recoveries and payoffs continue
+between them. They are not isolated one-frame events.
 
-## How things break
+## Edit the animation
 
-Two kinds of damage, chosen by what hit the letter:
+`ART_RAW` and `LETTER_COLS` define the five vector glyphs. Keep five letters and
+solid walkable cells in the rows used by the story: A/I row 0, N rows 0–3, S rows
+0/2/4, L row 4. Glyph edits feed the surface map and shared definitions.
+`CW`, `CH`, `X0`, `Y0` position the artwork; changing the overall layout may also
+require retuning the room and rope staging.
 
-- **Blade = a cut.** `Piece.slice()` makes two copies clipped to either side of a line (the line is
-  where the blade crossed). Both halves fall, bounce and fade. The poster is cut the same way, but
-  its halves flutter down like paper (`paper=True`).
-- **Blunt = a shatter.** `Piece.crack()` grows cracks outward from the impact point
-  (`stroke-dashoffset`), then `Piece.release()` breaks loose everything within `R` of it. The
-  letter is pre-cut into Voronoi fragments (a jittered grid of seeds, each cell clipped to the
-  letter by half-planes). Each fragment's launch is worked out in Python:
-  speed falls off with distance from the impact, direction is the blow plus "away from the
-  impact point", spin comes from how far off-centre it was hit, and the shock reaches far
-  fragments a moment later. Then gravity, a floor bounce and a fade, written out as keyframes.
-  Fragments outside `R` stay in place, so a letter can lose only a corner, and a second hit
-  carries on from the damage of the first.
-- A light hit only calls `Scene.scuff()`: cracks and a few chips, nothing detaches.
+`PALETTES` contains paper, ink, a neutral rule color, and one accent per character.
+`ALT` becomes the SVG description; update the root README's image description
+when changing the story. `POSTER_*` edits the wanted notice.
 
-## How it works
+- `Track` rejects conflicting and out-of-order keys instead of silently retiming them.
+- `Char` morphs a composite body path rather than a separate track for every limb.
+  There are 68 poses, including climbs, gaze changes, blind swings, pushes,
+  balance, pulling, flint, shielding, bowing and surrender.
+- `Letter.surface()` reads exposed solid cells. `segment_cross()` checks the
+  actual hand-to-tip segment against the letter before registering a cut.
+- Each glyph exists once in `defs`; shelves and fragments use local `use` references.
+- `follow()` supplies delayed hat and coat response. Flag, rope and lantern
+  tracks add settling motion. The camera combines pan, punch and shake.
+- Shards collide using rotated vertices. Reconstruction visits their exact
+  position and rotation samples backwards, then reveals the intact glyph.
+- A page-minus-hole foreground deck clip hides legs during the crossing.
 
-- **Track** is a list of `(time, value, easing)` keyframes. `anim()` turns it into one
-  `<animate>` with `keyTimes` and `keySplines`. Every element shares one timeline, so
-  everything stays in sync with no scripting.
-- **Char** is a stick figure. A pose is a dict of joint points; each limb is a
-  `<polyline points>` and SMIL morphs it from pose to pose. A run cycle is six poses.
-  Squash/stretch, facing and rotation are nested transform groups.
-- **Effects**: smears that follow the blade tip, afterimages, comic starbursts, shock rings, speed
-  lines, anticipation rings, hit-stop and screen shake.
-- **Piece** can move, rotate, fade, pop in, and be cut in half (two copies of the
-  same content, each clipped to one side of the cut line).
-- The banner is drawn from rectangles and lines (one group per letter), so it never
-  depends on which monospace font the viewer has.
-- `eased()` reimplements the browser's cubic-bezier, so Python can ask where something is
-  mid-tween (`Char.world()`) and land sparks and thrown daggers exactly on the hand.
-- The wave covers the page fully for about a second. Letters, poster and props are reset
-  while it is covering, so the loop seam is invisible.
+## Verification
 
-Theme: pirate vs navy officer, both original characters. Light and dark differ only in the
-`PALETTES` dict.
+Every build checks XML, internal references, compatible path morphs, strict
+keyframe order, deterministic output, a 750,000-byte per-SVG budget, at least 60
+poses, and a maximum of 60 simultaneously changing elements. Concurrency is
+measured by sweeping all changing keyframe intervals, excluding elements under
+fully transparent ancestors. It counts elements, not attributes or total tracks.
+Animated definitions count each visible `use` instance separately.
+
+Preview generation compares rendered pixels at 0, 33.999 and 34.001 seconds,
+then checks SVG image embedding at 830px and 390px widths. `--check` detects stale
+animated and static SVGs. Browser rendering is a separate optional step; a
+successful source-only build does not claim a visual seam check.
+
+The reference was supplied during development as `../inspiration.py` and reviewed
+for timing, physical contacts, occlusion and silhouette readability. Its characters,
+franchise props, story and code were not incorporated. The original raid's poses
+and vector glyphs remain the starting vocabulary. See `QA.md` for the review.

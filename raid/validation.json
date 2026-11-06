@@ -1,0 +1,24 @@
+{
+  "light": {
+    "bytes": 231538,
+    "elements": 625,
+    "animation_tracks": 201,
+    "peak_changing_elements": 50,
+    "peak_time": 23.18,
+    "poses": 68,
+    "duration": 34.0,
+    "sha256": "5007eaaaea17fdc5ae3289fd5c7952c41796affabcbe0db1873653a12f732d83",
+    "geometry_contacts": 22
+  },
+  "dark": {
+    "bytes": 231538,
+    "elements": 625,
+    "animation_tracks": 201,
+    "peak_changing_elements": 50,
+    "peak_time": 23.18,
+    "poses": 68,
+    "duration": 34.0,
+    "sha256": "bd6e3362b19dbfaf1b8cdec7e256ab9ded6ea3ccc5deb016ebfd6c8b391b8b3c",
+    "geometry_contacts": 22
+  }
+}
