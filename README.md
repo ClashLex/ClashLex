@@ -3,5 +3,5 @@
   <source media="(prefers-reduced-motion: reduce)" srcset="raid/raid-light-static.svg">
   <source media="(prefers-color-scheme: dark)" srcset="raid/raid-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="raid/raid-light.svg">
-  <img src="raid/raid-light.svg" width="100%" alt="ANSIL in vector ASCII letters. A pirate raises a flag on the I, a navy officer chases him down the S, and the I crashes through the deck. Below, a barrel fuse launches them back through the banner. The fragments rebuild ANSIL; a surrender flag waves from the L before the pirate climbs away.">
+  <img src="raid/raid-light.svg" width="100%" alt="ANSIL becomes a pirate stage: a rope arrival, a flag on the I, and an officer chasing a pirate down the S. A blind swing fells the I and breaks the deck. Below, a stuck sword and a lit fuse cause a barrel blast. The shattered letters rebuild, and a surrender flag emerges from L.">
 </picture>

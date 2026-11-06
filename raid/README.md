@@ -1,17 +1,16 @@
-# ANSIL — below deck
+# ANSIL - Below deck
 
-A 34-second loop in four acts. A pirate turns the I into a mast, an officer cuts
-his way down the S, and the fallen mast breaks the deck. A chase among barrels
-below launches them back through the banner. Its fragments reverse their fall,
-rebuilding A, N, S, I, L. A surrender flag and the returning rope close the loop.
+A 34-second SVG short: a pirate turns the I into a mast, an officer chases him
+down the S, and their fight breaks the deck. Below, a stuck sword, a rolling
+barrel and a lit fuse send them back through the banner. The fragments retrace
+their flight to rebuild ANSIL; a small surrender flag closes the argument.
 
-The profile uses self-contained SMIL SVGs: no scripts, CSS animation, fonts to
-download, images, filters, or external references. Light and dark are palette
-variants. Static SVGs provide a reduced-motion alternative.
+The animation uses a jointed rig, geometry-driven contacts and a four-act
+timeline. The cast, props, ASCII banner and story are original to this project.
 
-## Build and watch
+## Build
 
-Python 3.12 or later; building and linting use only the standard library.
+Python 3.12 or later. Building and validation use only the standard library.
 
 ```sh
 python raid/make_raid.py
@@ -21,11 +20,10 @@ python raid/make_raid.py --out build/raid
 python -m http.server 8000
 ```
 
-Open `http://localhost:8000/raid/preview.html` for play/pause, a timeline, act
-navigation, speed, and theme controls. Opening the HTML directly still displays
-the banner; the controls need HTTP because they load the SVG document.
-
-For the complete render package:
+Open `http://localhost:8000/raid/preview.html` for playback, scrubbing, speed,
+act navigation and theme controls. The player reads the beat sheet directly
+from SVG metadata. Reduced-motion preferences start playback paused; the
+profile README provides separate static SVGs.
 
 ```sh
 python -m pip install pillow playwright imageio-ffmpeg
@@ -33,98 +31,87 @@ python -m playwright install chromium
 python raid/make_raid.py --preview --export
 ```
 
-An installed Chrome/Chromium can be selected with `--browser /path/to/browser`.
-On Windows, quote the path, for example
-`--browser "C:\Program Files\Google\Chrome\Application\chrome.exe"`.
-`--fps` defaults to 12. Missing preview/export dependencies fail with a nonzero
-status rather than silently omitting the requested artifacts.
+To use installed Chrome on Windows, append:
 
-The output includes:
+```sh
+--browser "C:\Program Files\Google\Chrome\Application\chrome.exe"
+```
 
-- `raid-{light,dark}.svg` and matching `-static.svg` files.
-- `validation.json`: size, track/element counts, concurrency, poses and hashes.
-- `preview/{theme}/frame-*.png`: every frame at the selected rate.
-- `preview/{theme}-01-arrival.jpg` through `04-return.jpg`: all frames per act.
-- `preview/{theme}-storyboard.jpg`: a compact 24-beat overview.
-- `preview/raid-{theme}.gif` and `.mp4` when `--export` is selected.
-- `preview/render-report.json`: browser embedding and pixel-equal loop checks.
-- `ansil-raid.zip`: SVGs, available source/docs and shareable previews.
+`--fps` defaults to 12. Preview/export dependencies are optional for building,
+but missing dependencies fail explicitly when rendering is requested.
 
-PNG frames, contact sheets, video files and the release zip are local build
-artifacts and ignored by Git. The four SVGs and `validation.json` are committed.
+## The new engine
+
+- `Curve` rejects conflicting timestamps. Held anticipation, contact freezes
+  and recovery have explicit keys; authoring errors never retime the film.
+- `Actor` evaluates a two-bone rig with fixed arm and leg lengths. A single
+  world-space joint evaluator supplies carried props, rope endpoints and cuts.
+- Feet land on solid cells from `ART_RAW`. The supporting letter dips and the
+  actor follows it until takeoff. Rope swings follow circular hand trajectories.
+- Shelf cuts alternate down/up/down. The visible blade intersects solid glyph
+  cells; those intersections define the fragment clipping planes.
+- The lodged sword inherits its carried silhouette. Constrained wrists stay
+  on its hilt while the hips shift through two increasingly strained pulls.
+- Hats and coat tails settle after the main pose. The flag, lantern, rolling
+  barrel and camera have their own timelines.
+- A foreground deck mask hides the fall; a separate clip hides the officer's
+  legs when L catches him. One camera travels between both physical floors.
+- Twenty fragments collide with the floor using their rotated vertices, then
+  visit exactly the same position and rotation samples in reverse.
+- Body morphs and glyphs are shared through `defs`/`use`. Animation sampling
+  is limited to visible prop windows. IDs and output are deterministic.
+
+`ART_RAW` and `LETTER_COLS` preserve the editable vector ASCII identity. Glyphs
+need no font. Keep exposed solid cells on A/I row 0, N rows 0-2, S row 0 and L
+row 4 when editing terrain. `PALETTES` defines paper, ink, neutral rules and
+one accent per character. `POSES`, `BEATS` and `ACTS` are the authoring vocabulary.
+The actual choreography lives in `Film.choreograph()`.
 
 ## Beat sheet
 
-| Time | Action | Mechanism / callback |
+| Time | Setup and payoff | Mechanism / callback |
 | --- | --- | --- |
-| 0.6 | A ripple travels A to L | footfalls |
-| 1.0 | Rope swing, A apex kick, L ledge landing | rope / A / L |
-| 2.6 | Climb the I and tie a flag | I / flag |
-| 3.8 | Dagger pins a wanted notice to the S | dagger / poster |
-| 4.8 | Officer descends onto the N staircase | N / rope |
-| 5.8 | Poster, pirate, poster: the spyglass confirms it | poster |
-| 6.6 | A whistle; the pirate drops down the S | S shelves |
-| 7.4 | Three blade contacts separate the S shelves | S / sword |
-| 8.5 | Flag rope swing; a slash drops the flag on the officer | flag / rope |
-| 9.6 | Blinded swing cuts the I at its foot | flag / I |
-| 10.7 | The I falls like a mast; both try to stop it | I |
-| 12.0 | The mast hits the deck; cracks race out | I / hole |
-| 13.2 | The letters lean in; both fall through | hole |
-| 14.4 | Below deck: a lantern reveals the barrel room | hole / lantern |
-| 15.4 | The officer sticks his sword into a barrel | sword |
-| 16.4 | Pirate balances on a rolling barrel; officer pulls | barrel / sword |
-| 17.8 | The dagger strikes a spark on the fuse | dagger / fuse |
-| 18.8 | Officer chases the spark; the pirate ducks | fuse |
-| 20.0 | Three barrels burst in sequence | barrels / fuse |
-| 22.0 | Blast through the hole; ANSIL shatters from below | hole / letters |
-| 23.4 | Officer wedges into the L while rubble falls | L |
-| 25.0 | Fragments reverse their fall and lock A to L | letters / heal |
-| 28.2 | Pirate tips his hat; a surrender flag emerges from L | flag / L |
-| 31.0 | Opening rope returns; the pirate leaves; the deck heals | rope / hole |
+| 0.60 | A distant footfall ripples through ANSIL | A to L / footfall |
+| 1.00 | The pirate swings in, kicks A, and lands on L | rope / A apex / L ledge |
+| 2.35 | A climb turns I into a flag mast | I / flag |
+| 3.45 | A dagger pins the wanted notice to S | S / dagger / poster |
+| 4.50 | An officer slides down onto the N staircase | N / rope |
+| 5.50 | Poster, pirate, poster; a spyglass double-take | poster / recognition |
+| 6.60 | A whistle starts the chase down S | S shelves |
+| 7.15 | Three connected swings separate the shelves | S / sword |
+| 8.70 | The pirate escapes on the flag rope | flag / rope |
+| 9.25 | A cut rope drops the flag over the officer | flag / blindness |
+| 9.95 | A blind swing cuts the foot of I | I / blade |
+| 10.60 | Both brace against the falling mast | I / resistance |
+| 12.00 | The mast hits; a crack opens the deck | I / hole |
+| 13.20 | The page gives way; a fall reveals below deck | hole / camera |
+| 14.50 | A landing, a look up, and a renewed pursuit | lantern / barrels |
+| 15.30 | The sword sticks; its owner pulls twice | sword / barrel |
+| 16.50 | The pirate walks a barrel under his feet | barrel / balance |
+| 17.80 | The dagger returns to strike the fuse | dagger / fuse |
+| 18.60 | The officer chases the spark; the pirate takes cover | fuse / sword |
+| 20.00 | Two blasts, a pause, then the third barrel | barrels / anticipation |
+| 22.00 | They burst upward through ANSIL | hole / letters |
+| 23.30 | L catches the officer; fragments fall and reverse | L / visible repair |
+| 28.00 | A hat tip receives a very small surrender flag | flag / L |
+| 31.00 | The rope returns and the page closes behind them | rope / deck |
 
-Beat times mark setups; holds, secondary motion, recoveries and payoffs continue
-between them. They are not isolated one-frame events.
+## Outputs and verification
 
-## Edit the animation
+The build writes both animated SVGs, both static fallbacks, and `validation.json`.
+The report contains byte size, changing-element concurrency, performed poses,
+SHA-256 hashes and the actual geometry contacts. `--check` verifies all five
+artifacts without writing them. The SVGs contain no scripts, CSS animation,
+external resources, raster images, filters or `foreignObject`.
 
-`ART_RAW` and `LETTER_COLS` define the five vector glyphs. Keep five letters and
-solid walkable cells in the rows used by the story: A/I row 0, N rows 0–3, S rows
-0/2/4, L row 4. Glyph edits feed the surface map and shared definitions.
-`CW`, `CH`, `X0`, `Y0` position the artwork; changing the overall layout may also
-require retuning the room and rope staging.
+`--preview` renders every frame, one full contact sheet per act and theme,
+compact storyboards, and a browser report. It compares pixels at 0, 33.999 and
+34.001 seconds, and checks image embedding at 830px and 390px. `--export` adds
+GIF, MP4 and `ansil-raid.zip`. Frames, previews and the zip are ignored local
+artifacts; source, the four SVGs and validation are versioned.
 
-`PALETTES` contains paper, ink, a neutral rule color, and one accent per character.
-`ALT` becomes the SVG description; update the root README's image description
-when changing the story. `POSTER_*` edits the wanted notice.
-
-- `Track` rejects conflicting and out-of-order keys instead of silently retiming them.
-- `Char` morphs a composite body path rather than a separate track for every limb.
-  There are 68 poses, including climbs, gaze changes, blind swings, pushes,
-  balance, pulling, flint, shielding, bowing and surrender.
-- `Letter.surface()` reads exposed solid cells. `segment_cross()` checks the
-  actual hand-to-tip segment against the letter before registering a cut.
-- Each glyph exists once in `defs`; shelves and fragments use local `use` references.
-- `follow()` supplies delayed hat and coat response. Flag, rope and lantern
-  tracks add settling motion. The camera combines pan, punch and shake.
-- Shards collide using rotated vertices. Reconstruction visits their exact
-  position and rotation samples backwards, then reveals the intact glyph.
-- A page-minus-hole foreground deck clip hides legs during the crossing.
-
-## Verification
-
-Every build checks XML, internal references, compatible path morphs, strict
-keyframe order, deterministic output, a 750,000-byte per-SVG budget, at least 60
-poses, and a maximum of 60 simultaneously changing elements. Concurrency is
-measured by sweeping all changing keyframe intervals, excluding elements under
-fully transparent ancestors. It counts elements, not attributes or total tracks.
-Animated definitions count each visible `use` instance separately.
-
-Preview generation compares rendered pixels at 0, 33.999 and 34.001 seconds,
-then checks SVG image embedding at 830px and 390px widths. `--check` detects stale
-animated and static SVGs. Browser rendering is a separate optional step; a
-successful source-only build does not claim a visual seam check.
-
-The reference was supplied during development as `../inspiration.py` and reviewed
-for timing, physical contacts, occlusion and silhouette readability. Its characters,
-franchise props, story and code were not incorporated. The original raid's poses
-and vector glyphs remain the starting vocabulary. See `QA.md` for the review.
+Tests cover interpolated bone lengths, real foot/blade/hand contacts, sword
+attachment, floor collisions, exact reversed fragment motion, deterministic
+serialization, SVG restrictions, shared-instance concurrency and stale assets.
+See `validation.json` for measured sizes, animation counts and contact records.
+Optional browser checks write their results to `preview/render-report.json`.

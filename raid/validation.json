@@ -1,24 +1,552 @@
 {
   "light": {
-    "bytes": 231538,
-    "elements": 625,
-    "animation_tracks": 201,
-    "peak_changing_elements": 50,
-    "peak_time": 23.18,
-    "poses": 68,
+    "bytes": 572440,
+    "elements": 889,
+    "animation_tracks": 301,
+    "peak_changing_elements": 53,
+    "peak_time": 23.182,
+    "poses": 78,
     "duration": 34.0,
-    "sha256": "5007eaaaea17fdc5ae3289fd5c7952c41796affabcbe0db1873653a12f732d83",
-    "geometry_contacts": 22
+    "sha256": "c0e1e8d71b223c80d423d76295dc92e4d53c86a4184f290440142410707d5098",
+    "geometry_contacts": [
+      {
+        "kind": "foot",
+        "actor": "pirate",
+        "joint": "lf",
+        "letter": "L",
+        "time": 2.15,
+        "point": [
+          639.38,
+          204.0
+        ]
+      },
+      {
+        "kind": "kick",
+        "letter": "A",
+        "joint": "rf",
+        "time": 1.4,
+        "point": [
+          189.49999999999997,
+          116.0
+        ]
+      },
+      {
+        "kind": "foot",
+        "actor": "navy",
+        "joint": "lf",
+        "letter": "N",
+        "time": 4.9,
+        "point": [
+          369.38,
+          116.0
+        ]
+      },
+      {
+        "kind": "foot",
+        "actor": "navy",
+        "joint": "lf",
+        "letter": "N",
+        "time": 5.28,
+        "point": [
+          294.38,
+          138.0
+        ]
+      },
+      {
+        "kind": "foot",
+        "actor": "navy",
+        "joint": "lf",
+        "letter": "N",
+        "time": 5.49,
+        "point": [
+          309.38,
+          160.0
+        ]
+      },
+      {
+        "kind": "foot",
+        "actor": "pirate",
+        "joint": "lf",
+        "letter": "S",
+        "time": 7.05,
+        "point": [
+          498.12,
+          116.0
+        ]
+      },
+      {
+        "kind": "blade",
+        "letter": "S",
+        "time": 7.22,
+        "point": [
+          429.7160511174472,
+          116.0
+        ],
+        "hilt": [
+          420.92,
+          108.08
+        ],
+        "tip": [
+          449.8134708145611,
+          134.09579797523241
+        ]
+      },
+      {
+        "kind": "blade",
+        "letter": "S",
+        "time": 7.9,
+        "point": [
+          420.92,
+          167.2
+        ],
+        "hilt": [
+          420.92,
+          167.2
+        ],
+        "tip": [
+          452.768631481956,
+          144.89934815467132
+        ]
+      },
+      {
+        "kind": "blade",
+        "letter": "S",
+        "time": 8.58,
+        "point": [
+          429.71605111744725,
+          204.0
+        ],
+        "hilt": [
+          420.92,
+          196.07999999999998
+        ],
+        "tip": [
+          449.8134708145611,
+          222.09579797523241
+        ]
+      },
+      {
+        "kind": "blade",
+        "letter": "I",
+        "time": 10.04,
+        "point": [
+          528.92,
+          205.07999999999998
+        ],
+        "hilt": [
+          528.92,
+          205.07999999999998
+        ],
+        "tip": [
+          557.8134708145611,
+          231.09579797523241
+        ]
+      },
+      {
+        "kind": "mast",
+        "time": 12.0,
+        "point": [
+          628.2520864084474,
+          306.0272384024117
+        ]
+      },
+      {
+        "kind": "foot",
+        "actor": "pirate",
+        "joint": "rf",
+        "letter": "L",
+        "time": 27.88,
+        "point": [
+          647.3,
+          204.0
+        ]
+      },
+      {
+        "kind": "dagger",
+        "time": 3.94,
+        "point": [
+          468,
+          172
+        ],
+        "origin": [
+          531.02,
+          69.56
+        ]
+      },
+      {
+        "kind": "retrieve",
+        "time": 8.27,
+        "point": [
+          468.0,
+          172.0
+        ],
+        "target": [
+          468,
+          172
+        ]
+      },
+      {
+        "kind": "lodged",
+        "time": 15.58,
+        "point": [
+          501.44,
+          609.28
+        ],
+        "hilt": [
+          462.56,
+          609.28
+        ]
+      }
+    ],
+    "used_poses": [
+      "balance_cross",
+      "balance_left",
+      "balance_right",
+      "blast",
+      "blind_left",
+      "blind_right",
+      "bow",
+      "breathe",
+      "climb_left",
+      "climb_right",
+      "compress",
+      "crouch",
+      "cut_down",
+      "cut_high",
+      "cut_through",
+      "cut_up",
+      "double_take",
+      "draw",
+      "duck",
+      "dust_left",
+      "exit_grip",
+      "fall",
+      "flinch",
+      "flint_raise",
+      "flint_strike",
+      "grip",
+      "guard",
+      "hang",
+      "hat_tip",
+      "hips",
+      "kick_apex",
+      "land_hard",
+      "look_left",
+      "look_right",
+      "point",
+      "pull",
+      "pull_hard",
+      "push_fail",
+      "push_load",
+      "push_reach",
+      "recover",
+      "release",
+      "rest",
+      "retrieve",
+      "rise",
+      "run_contact",
+      "run_flight",
+      "run_pass",
+      "scope",
+      "scope_raise",
+      "scope_recoil",
+      "shield",
+      "shrug",
+      "slide",
+      "stab",
+      "stamp",
+      "stamp_high",
+      "stumble",
+      "swing",
+      "takeoff",
+      "throw_draw",
+      "throw_follow",
+      "throw_release",
+      "tie_high",
+      "tie_low",
+      "tuck",
+      "wave_high",
+      "wave_low",
+      "wedge",
+      "whistle",
+      "wind_high",
+      "wind_low"
+    ],
+    "engine": "joint-rig-v3"
   },
   "dark": {
-    "bytes": 231538,
-    "elements": 625,
-    "animation_tracks": 201,
-    "peak_changing_elements": 50,
-    "peak_time": 23.18,
-    "poses": 68,
+    "bytes": 572440,
+    "elements": 889,
+    "animation_tracks": 301,
+    "peak_changing_elements": 53,
+    "peak_time": 23.182,
+    "poses": 78,
     "duration": 34.0,
-    "sha256": "bd6e3362b19dbfaf1b8cdec7e256ab9ded6ea3ccc5deb016ebfd6c8b391b8b3c",
-    "geometry_contacts": 22
+    "sha256": "7150f437ed86658c5faad531ae18858f1389f3eff44b9f102c135d99765fa7b7",
+    "geometry_contacts": [
+      {
+        "kind": "foot",
+        "actor": "pirate",
+        "joint": "lf",
+        "letter": "L",
+        "time": 2.15,
+        "point": [
+          639.38,
+          204.0
+        ]
+      },
+      {
+        "kind": "kick",
+        "letter": "A",
+        "joint": "rf",
+        "time": 1.4,
+        "point": [
+          189.49999999999997,
+          116.0
+        ]
+      },
+      {
+        "kind": "foot",
+        "actor": "navy",
+        "joint": "lf",
+        "letter": "N",
+        "time": 4.9,
+        "point": [
+          369.38,
+          116.0
+        ]
+      },
+      {
+        "kind": "foot",
+        "actor": "navy",
+        "joint": "lf",
+        "letter": "N",
+        "time": 5.28,
+        "point": [
+          294.38,
+          138.0
+        ]
+      },
+      {
+        "kind": "foot",
+        "actor": "navy",
+        "joint": "lf",
+        "letter": "N",
+        "time": 5.49,
+        "point": [
+          309.38,
+          160.0
+        ]
+      },
+      {
+        "kind": "foot",
+        "actor": "pirate",
+        "joint": "lf",
+        "letter": "S",
+        "time": 7.05,
+        "point": [
+          498.12,
+          116.0
+        ]
+      },
+      {
+        "kind": "blade",
+        "letter": "S",
+        "time": 7.22,
+        "point": [
+          429.7160511174472,
+          116.0
+        ],
+        "hilt": [
+          420.92,
+          108.08
+        ],
+        "tip": [
+          449.8134708145611,
+          134.09579797523241
+        ]
+      },
+      {
+        "kind": "blade",
+        "letter": "S",
+        "time": 7.9,
+        "point": [
+          420.92,
+          167.2
+        ],
+        "hilt": [
+          420.92,
+          167.2
+        ],
+        "tip": [
+          452.768631481956,
+          144.89934815467132
+        ]
+      },
+      {
+        "kind": "blade",
+        "letter": "S",
+        "time": 8.58,
+        "point": [
+          429.71605111744725,
+          204.0
+        ],
+        "hilt": [
+          420.92,
+          196.07999999999998
+        ],
+        "tip": [
+          449.8134708145611,
+          222.09579797523241
+        ]
+      },
+      {
+        "kind": "blade",
+        "letter": "I",
+        "time": 10.04,
+        "point": [
+          528.92,
+          205.07999999999998
+        ],
+        "hilt": [
+          528.92,
+          205.07999999999998
+        ],
+        "tip": [
+          557.8134708145611,
+          231.09579797523241
+        ]
+      },
+      {
+        "kind": "mast",
+        "time": 12.0,
+        "point": [
+          628.2520864084474,
+          306.0272384024117
+        ]
+      },
+      {
+        "kind": "foot",
+        "actor": "pirate",
+        "joint": "rf",
+        "letter": "L",
+        "time": 27.88,
+        "point": [
+          647.3,
+          204.0
+        ]
+      },
+      {
+        "kind": "dagger",
+        "time": 3.94,
+        "point": [
+          468,
+          172
+        ],
+        "origin": [
+          531.02,
+          69.56
+        ]
+      },
+      {
+        "kind": "retrieve",
+        "time": 8.27,
+        "point": [
+          468.0,
+          172.0
+        ],
+        "target": [
+          468,
+          172
+        ]
+      },
+      {
+        "kind": "lodged",
+        "time": 15.58,
+        "point": [
+          501.44,
+          609.28
+        ],
+        "hilt": [
+          462.56,
+          609.28
+        ]
+      }
+    ],
+    "used_poses": [
+      "balance_cross",
+      "balance_left",
+      "balance_right",
+      "blast",
+      "blind_left",
+      "blind_right",
+      "bow",
+      "breathe",
+      "climb_left",
+      "climb_right",
+      "compress",
+      "crouch",
+      "cut_down",
+      "cut_high",
+      "cut_through",
+      "cut_up",
+      "double_take",
+      "draw",
+      "duck",
+      "dust_left",
+      "exit_grip",
+      "fall",
+      "flinch",
+      "flint_raise",
+      "flint_strike",
+      "grip",
+      "guard",
+      "hang",
+      "hat_tip",
+      "hips",
+      "kick_apex",
+      "land_hard",
+      "look_left",
+      "look_right",
+      "point",
+      "pull",
+      "pull_hard",
+      "push_fail",
+      "push_load",
+      "push_reach",
+      "recover",
+      "release",
+      "rest",
+      "retrieve",
+      "rise",
+      "run_contact",
+      "run_flight",
+      "run_pass",
+      "scope",
+      "scope_raise",
+      "scope_recoil",
+      "shield",
+      "shrug",
+      "slide",
+      "stab",
+      "stamp",
+      "stamp_high",
+      "stumble",
+      "swing",
+      "takeoff",
+      "throw_draw",
+      "throw_follow",
+      "throw_release",
+      "tie_high",
+      "tie_low",
+      "tuck",
+      "wave_high",
+      "wave_low",
+      "wedge",
+      "whistle",
+      "wind_high",
+      "wind_low"
+    ],
+    "engine": "joint-rig-v3"
   }
 }
