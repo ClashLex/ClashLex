@@ -1,0 +1,35 @@
+name: build-raid
+
+# Rebuilds the README animation whenever the generator changes.
+on:
+  push:
+    paths:
+      - "raid/make_raid.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install fonts and Pillow (text widths are measured with Liberation Sans)
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y fonts-liberation
+          pip install pillow
+      - name: Generate SVGs
+        run: python raid/make_raid.py
+      - name: Commit and push
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add raid/raid-light.svg raid/raid-dark.svg
+          if git commit -m "rebuild raid animation"; then
+            git push
+          fi
