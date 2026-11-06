@@ -1,6 +1,8 @@
-"""Physical contacts, joint invariants, serialization and the release contract."""
+"""Reference adaptation: profile content, choreography continuity and SVG output."""
 import importlib.util
+import json
 import math
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -14,118 +16,118 @@ raid = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(raid)
 
 
-class EngineTests(unittest.TestCase):
+class ReferenceTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.film = raid.Film('light')
-        cls.svg = cls.film.svg()
+        cls.svg = raid.render('light')
 
-    def test_conflicting_timestamps_do_not_retime_or_mutate(self):
-        track = raid.Curve(0.).key(2., 10.)
-        before = list(track.keys)
-        for t in (1., 2., raid.T+1):
-            with self.assertRaises(ValueError):
-                track.key(t, 20.)
-            self.assertEqual(track.keys, before)
-        self.assertEqual(track.go(3, 4, 30.).at(2.5), 10.)
-        self.assertAlmostEqual(track.at(3.5), 20., places=5)
+    def test_exact_profile_copy_and_personalized_targets(self):
+        self.assertEqual(raid.H1_TEXT, "Hi, I'm Ansil.")
+        self.assertEqual([line for line in raid.PARAS if line], [
+            'B.Tech CSE Undergraduate.', 'Developer. Experimenter. Builder.',
+            'I build, break, and rebuild things.',
+        ])
+        self.assertEqual(''.join(letter.text for letter in raid.NL), 'rebuild')
+        self.assertEqual([raid.RD.text, raid.S1.text, raid.S2.text, raid.S3.text],
+                         ['things.', 'break,', 'Experimenter.', 'Undergraduate.'])
+        text = ''.join(ET.fromstring(self.svg).itertext())
+        for original_info in ('Jeremy', 'UWaterloo', 'teddy', 'Ted.', 'Dear', 'Diary'):
+            self.assertNotIn(original_info, text)
 
-    def test_two_bone_solver_preserves_lengths_and_limits_reach(self):
-        for target in ((0, 0), (3, 11), (100, 0), (-19, 7)):
-            for side in (-1, -.2, 1):
-                middle, end = raid.two_bone((0, 0), target, 12, 13, side)
-                self.assertAlmostEqual(math.dist((0, 0), middle), 12, places=6)
-                self.assertAlmostEqual(math.dist(middle, end), 13, places=6)
-                self.assertLessEqual(math.hypot(*end), 25)
+    def test_climb_handoff_keeps_every_joint_at_the_same_position(self):
+        for joint in ('H', 'N', 'P', 'LH', 'RH', 'LF', 'RF'):
+            self.assertLess(math.dist(raid.crawl.world(3.86, joint), raid.red.world(3.86, joint)), .00001)
+        self.assertEqual(raid.eval_num(raid.crawl.op, 3.86), 0)
+        self.assertEqual(raid.eval_num(raid.red.op, 3.86), 1)
 
-    def test_interpolated_performance_keeps_every_limb_length(self):
-        for actor in (self.film.pirate, self.film.navy):
-            for i in range(int(raid.T*12)):
-                j = actor.local(i/12)
-                for limb in ('left', 'right', 'lf', 'rf'):
-                    origin, length = ('shoulder', 12) if limb in ('left', 'right') else ('hip', 13)
-                    self.assertAlmostEqual(math.dist(j[origin], j[limb+'_mid']), length, places=5)
-                    self.assertAlmostEqual(math.dist(j[limb+'_mid'], j[limb]), length, places=5)
+    def test_climb_reveals_hands_then_body_then_legs(self):
+        stages = ((2.31, {'LA', 'RA'}), (3.1, {'LA', 'RA', 'H', 'torso'}),
+                  (3.5, {'LA', 'RA', 'H', 'torso', 'RL'}),
+                  (3.8, {'LA', 'RA', 'H', 'torso', 'RL', 'LL'}))
+        for time, expected in stages:
+            shown = {name for name, track in raid.crawl.lop.items() if raid.eval_num(track, time) == 1}
+            self.assertEqual(shown, expected)
 
-    def test_geometry_contacts_use_the_performed_joints(self):
-        actors = {'pirate': self.film.pirate, 'navy': self.film.navy}
-        for contact in self.film.contacts:
-            t = contact['time']
-            if contact['kind'] == 'foot':
-                point = actors[contact['actor']].world(contact['joint'], t)
-                self.assertLess(math.dist(point, contact['point']), .001)
-                col = int((point[0]-raid.X0)//raid.CW)
-                row = round((point[1]-raid.Y0)/raid.CH)
-                self.assertEqual(raid.art_rows()[row][col], '█')
-            elif contact['kind'] == 'blade':
-                self.assertEqual(contact['hilt'], self.film.navy.world('right', t))
-                self.assertEqual(contact['tip'], self.film.navy.world('tip', t))
-                a, b, p = contact['hilt'], contact['tip'], contact['point']
-                self.assertAlmostEqual(math.dist(a, p)+math.dist(p, b), math.dist(a, b), places=5)
-        self.assertEqual(len([c for c in self.film.contacts if c['kind'] == 'blade']), 4)
-        self.assertLess(math.dist(self.film.pirate.world('rf', 1.4), self.film.letters['A'].surface(0)), .001)
-        retrieval = next(c for c in self.film.contacts if c['kind'] == 'retrieve')
-        self.assertLess(math.dist(retrieval['point'], retrieval['target']), .001)
+    def test_all_seven_kicked_letters_move_and_return(self):
+        self.assertEqual(len(raid.NL), 7)
+        for letter in raid.NL:
+            self.assertTrue(letter.animated)
+            self.assertGreater(math.hypot(*raid.eval_num(letter.tr, 6.5)), 1)
+            self.assertEqual(raid.eval_num(letter.tr, 30.9), (0, 0))
+            self.assertEqual(raid.eval_num(letter.rot, 30.9), 0)
 
-    def test_tugging_hand_stays_on_lodged_sword(self):
-        for i in range(19):
-            t = 15.72+i*(17.27-15.72)/18
-            self.assertLess(math.dist(self.film.navy.world('right', t), self.film.lodged[0]), .001)
+    def test_cut_words_restore_without_leaving_halves_visible(self):
+        for word in (raid.S1, raid.S2, raid.S3):
+            self.assertEqual(len(word.halves), 2)
+            self.assertEqual(raid.eval_num(word.op, 30.9), 1)
+            self.assertEqual(raid.eval_num(word.tr, 30.9), (0, 0))
+            for half in word.halves:
+                self.assertEqual(raid.eval_num(half.op, 30.9), 0)
+                self.assertEqual(raid.eval_num(half.tr, 30.9), (0, 0))
+                self.assertEqual(raid.eval_num(half.rot, 30.9), 0)
 
-    def test_rope_swings_keep_the_hand_on_a_circle(self):
-        mast = self.film.letters['I']
-        swings = [(.92, 1.4, (77, -55), 'left'),
-                  (8.76, 9.25, (mast.x+mast.width/2, raid.Y0-50), 'right')]
-        for start, end, anchor, hand in swings:
-            lengths = [math.dist(self.film.pirate.world(hand, start+(end-start)*i/100), anchor)
-                       for i in range(101)]
-            self.assertLess(max(lengths)-min(lengths), .75)
+    def test_reference_weapon_geometry_ends_at_authored_tip(self):
+        for name in ('sw_idle', 'sw_upcut', 'sw_down', 'sw_stab'):
+            pose = raid.POSES[name]
+            parts = raid.katana_parts(pose)
+            self.assertIn(pose['WT'], parts['blade'])
+            self.assertEqual(len(parts['blade']), 9)
+            self.assertEqual(len(parts['tsuba']), 8)
 
-    def test_shards_collide_and_retrace_the_same_samples(self):
-        for fragment in self.film.physics:
-            for dt, position, angle in fragment['samples']:
-                for vertex in fragment['polygon']:
-                    rotated = raid.add(fragment['center'], raid.rotate(raid.sub(vertex, fragment['center']), angle))
-                    self.assertLessEqual(rotated[1]+position[1], raid.FLOOR+.00001)
-                forward = fragment['motion'].at(fragment['start']+dt)
-                reverse = fragment['motion'].at(fragment['restore']-dt)
-                self.assertLess(math.dist(forward, reverse), .0001)
-                self.assertAlmostEqual(fragment['rotation'].at(fragment['start']+dt)[0],
-                                       fragment['rotation'].at(fragment['restore']-dt)[0], places=4)
+    def test_render_timeline_applies_the_reference_lead_trim(self):
+        track = raid.Track(0)
+        track.hold(.9)
+        track.add(1.2, 1, 'out')
+        animation = ET.fromstring(raid.animate('opacity', track, str))
+        times = [float(t)*raid.T for t in animation.get('keyTimes').split(';')]
+        self.assertAlmostEqual(times[1], .65, places=4)
+        self.assertAlmostEqual(times[2], .95, places=4)
+        self.assertEqual(times[-1], 31.)
 
-    def test_sword_miss_and_polygon_half_plane(self):
-        self.assertEqual(raid.segment_box((-5, 3), (5, 3), (0, 0, 10, 10)), (0, 3))
-        self.assertIsNone(raid.segment_box((-5, 12), (15, 12), (0, 0, 10, 10)))
-        clipped = raid.clip_polygon([(0, 0), (10, 0), (10, 10), (0, 10)], (0, 1), 4)
-        self.assertTrue(all(y <= 4 for _, y in clipped))
-        self.assertIn((10, 4), clipped)
+    def test_pose_interpolation_and_world_transform_agree(self):
+        actor = raid.Char('stand', (10, 20))
+        actor.pose(1, 'kick', tween=.4, ease='lin')
+        actor.face(1.2, -1)
+        actor.sq.set(1.2, (2, .5))
+        expected = raid.POSES['kick']['RF']
+        self.assertEqual(actor.world(1.4, 'RF'), (10-expected[0]*2, 20+expected[1]*.5))
+        midpoint = actor.pose_at(.8)['RF']
+        self.assertAlmostEqual(midpoint[0], (raid.POSES['stand']['RF'][0]+expected[0])/2)
 
-    def test_build_is_repeatable_and_meets_svg_contract(self):
-        self.assertEqual(self.svg, self.film.svg())
-        self.assertEqual(self.svg, raid.Film('light').svg())
+    def test_deterministic_across_python_hash_seeds(self):
+        code = ('import importlib.util,hashlib,sys; '
+                's=importlib.util.spec_from_file_location("raid",sys.argv[1]); '
+                'm=importlib.util.module_from_spec(s);s.loader.exec_module(m); '
+                'print(hashlib.sha256(m.render("dark").encode()).hexdigest())')
+        hashes = []
+        for seed in ('1', '349'):
+            env = dict(os.environ, PYTHONHASHSEED=seed, PYTHONDONTWRITEBYTECODE='1')
+            result = subprocess.run([sys.executable, '-c', code, str(SCRIPT)], env=env, capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            hashes.append(result.stdout.strip())
+        self.assertEqual(*hashes)
+
+    def test_svg_contract_metadata_and_static_fallback(self):
+        self.assertEqual(self.svg, raid.render('light'))
         report = raid.lint_svg(self.svg)
-        self.assertLessEqual(report['bytes'], 750_000)
-        self.assertLessEqual(report['peak_changing_elements'], 60)
-        self.assertGreaterEqual(len(self.film.pirate.used | self.film.navy.used), 60)
-        self.assertTrue(20 <= len(raid.BEATS) <= 24)
+        self.assertEqual(report['duration'], 31)
+        self.assertEqual(report['poses'], 88)
+        root = ET.fromstring(self.svg)
+        metadata = json.loads(root.find('{http://www.w3.org/2000/svg}metadata').text)
+        self.assertEqual(len(metadata['acts']), 6)
+        self.assertEqual(metadata['duration'], 31)
         static = ET.fromstring(raid.static_svg(self.svg))
-        self.assertFalse(any(n.tag.endswith(('}animate', '}animateTransform')) for n in static.iter()))
+        self.assertFalse(any(node.tag.endswith(('}animate', '}animateTransform')) for node in static.iter()))
 
-    def test_linter_rejects_missing_references_and_executable_content(self):
+    def test_linter_rejects_broken_references_and_executable_content(self):
         for body, message in (('<use href="#absent"/>', 'Missing SVG reference'),
                               ('<script/>', 'Unsupported SVG element'),
                               ('<use href="https://example.com/a.svg"/>', 'Executable or external')):
             with self.assertRaisesRegex(ValueError, message):
                 raid.lint_svg('<svg xmlns="http://www.w3.org/2000/svg">'+body+'</svg>')
 
-    def test_concurrency_counts_visible_uses_of_shared_morphs(self):
-        morph = raid.animation('d', raid.Curve('M0,0L1,1').key(1, 'M0,0L2,2'), str)
-        svg = ('<svg xmlns="http://www.w3.org/2000/svg"><defs><path id="body" d="M0,0L1,1">'+morph+
-               '</path></defs><use href="#body"/><use href="#body"/><g opacity="0"><use href="#body"/></g></svg>')
-        self.assertEqual(raid.lint_svg(svg)['peak_changing_elements'], 2)
-
-    def test_custom_output_and_stale_asset_detection(self):
-        with tempfile.TemporaryDirectory(prefix='raid-output-') as temporary:
+    def test_new_output_directory_and_stale_asset_detection(self):
+        with tempfile.TemporaryDirectory(prefix='raid-reference-') as temporary:
             out = Path(temporary)/'new directory #1'/'nested'
             command = [sys.executable, str(SCRIPT), '--out', str(out)]
             for suffix in ([], ['--check']):
