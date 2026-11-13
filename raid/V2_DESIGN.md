@@ -318,8 +318,8 @@ required.
 ## 7. Quality gates and QA results
 
 The gates below are the review contract. The current branch has passed the
-build, unit-test, loop-seam, embedded-image and reduced-motion checks; the
-remaining visual review is a human pass over the contact sheets.
+build, unit-test, loop-seam, embedded-image and reduced-motion checks. The
+storyboards and act sheets have been reviewed in both themes.
 
 ### Build and contract — pass
 
@@ -364,8 +364,20 @@ remaining visual review is a human pass over the contact sheets.
 - no frame with an actor outside the viewBox in the key-frame pass;
 - H1 remains readable except during intentional flashes;
 - every major contact has anticipation, impact and follow-through;
-- the full 372-frame 12 fps export is a review step and requires Python
-  Playwright, which is not available in this WSL environment.
+- Full 372-frame 12 fps exports completed for both themes using Python
+  Playwright and Chrome; loop-seam and embedded-image checks passed.
+- Generated six act sheets per theme, two storyboards, GIFs, MP4s and the
+  release ZIP.
+
+Reproduce the full export with:
+
+```sh
+python raid/make_raid_v2.py --out build/raid-v2 --preview --export
+```
+
+This requires Playwright with Chromium and either ffmpeg or the
+`imageio-ffmpeg` package. Pass `--browser PATH` to use an installed Chrome or
+Chromium executable.
 
 ### Performance — pass
 
@@ -435,5 +447,7 @@ README.md               # <picture> block restored
 7. The branch is committed and ready for review; production assets are not
    swapped until review approves.
 
-Status: 1–3 and 5–7 are complete on `v2-margin-duel`. The browser checks in
-item 4 pass; the full 372-frame export remains a review step.
+Status: build, tests, stale-asset checks, visual review and the full 372-frame
+exports pass on `v2-margin-duel`. The release ZIP includes the V2 generator,
+assembler, editable act sources, tests and design document. Production assets
+remain untouched pending review; this branch is pushed for review.

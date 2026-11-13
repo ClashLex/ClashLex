@@ -37,6 +37,21 @@ tail = tail.replace(
     "katana_win=(6.0, 24.4), pick_win=(24.3, 25.6)",
 )
 
+# The inherited release bundler lists V1 sources; package the assembled V2 and
+# its editable inputs instead.
+bundle_start = tail.index("        for name in ('make_raid.py','test_raid.py','README.md','preview.html'):")
+bundle_end = tail.index("        for name in ('validation.json'", bundle_start)
+tail = tail[:bundle_start] + """        source_files = (
+            'make_raid.py', 'test_raid.py', 'make_raid_v2.py', 'assemble_v2.py',
+            '_v2_acts_2_3.py', '_v2_act4.py', '_v2_act5.py', '_v2_act6.py',
+            'test_raid_v2.py', 'V2_DESIGN.md', 'preview.html',
+        )
+        for name in source_files:
+            path = source/name
+            if path.exists():
+                archive.write(path,'raid/'+name)
+""" + tail[bundle_end:]
+
 # The Chopper class lives in V1's Act 4, outside the engine slice. Copy it
 # verbatim so the cameo keeps V1's geometry and boot-grip helper.
 start = next(i for i, line in enumerate(lines) if line.startswith("class Chopper:"))

@@ -8,6 +8,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import zipfile
 import xml.etree.ElementTree as ET
 
 SCRIPT = Path(__file__).with_name('make_raid_v2.py')
@@ -235,6 +236,35 @@ class MarginDuelTests(unittest.TestCase):
             stale = subprocess.run(command + ['--check'], capture_output=True, text=True)
             self.assertNotEqual(stale.returncode, 0)
             self.assertIn('Stale generated asset', stale.stderr)
+
+    def test_release_bundle_contains_v2_sources_and_docs(self):
+        with tempfile.TemporaryDirectory(prefix='raid-v2-bundle-') as temporary:
+            out = Path(temporary)
+            files = {}
+            for theme in raid.PALETTES:
+                svg = raid.render(theme)
+                path = out / f'raid-{theme}.svg'
+                path.write_text(svg, encoding='utf-8')
+                files[theme] = path
+                (out / f'raid-{theme}-static.svg').write_text(
+                    raid.static_svg(svg), encoding='utf-8')
+            (out / 'validation.json').write_text('{}', encoding='utf-8')
+
+            raid.bundle(out, files)
+
+            with zipfile.ZipFile(out / 'ansil-raid.zip') as archive:
+                names = set(archive.namelist())
+            required = {
+                'raid/make_raid.py', 'raid/test_raid.py',
+                'raid/make_raid_v2.py', 'raid/assemble_v2.py',
+                'raid/_v2_acts_2_3.py', 'raid/_v2_act4.py',
+                'raid/_v2_act5.py', 'raid/_v2_act6.py',
+                'raid/test_raid_v2.py', 'raid/V2_DESIGN.md',
+                'raid/preview.html',
+            }
+            self.assertTrue(required.issubset(names), required - names)
+            self.assertNotIn('raid/README.md', names)
+            self.assertNotIn('README.md', names)
 
 
 if __name__ == '__main__':

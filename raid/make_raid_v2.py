@@ -2789,13 +2789,15 @@ def bundle(outdir,files):
     destination=outdir/'ansil-raid.zip'
     source=Path(__file__).resolve().parent
     with zipfile.ZipFile(destination,'w',zipfile.ZIP_DEFLATED) as archive:
-        for name in ('make_raid.py','test_raid.py','README.md','preview.html'):
-            path=source/name
+        source_files = (
+            'make_raid.py', 'test_raid.py', 'make_raid_v2.py', 'assemble_v2.py',
+            '_v2_acts_2_3.py', '_v2_act4.py', '_v2_act5.py', '_v2_act6.py',
+            'test_raid_v2.py', 'V2_DESIGN.md', 'preview.html',
+        )
+        for name in source_files:
+            path = source/name
             if path.exists():
                 archive.write(path,'raid/'+name)
-        root_readme=source.parent/'README.md'
-        if root_readme.exists():
-            archive.write(root_readme,'README.md')
         for name in ('validation.json','raid-light-static.svg','raid-dark-static.svg'):
             archive.write(outdir/name,'raid/'+name)
         for path in files.values():
