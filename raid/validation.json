@@ -1,6 +1,6 @@
 {
   "light": {
-    "bytes": 766587,
+    "bytes": 766834,
     "elements": 2905,
     "animation_tracks": 890,
     "peak_changing_elements": 95,
@@ -9,10 +9,10 @@
     "duration": 31.0,
     "reference_sha256": "beada4909758073238404924e9fae339702c6db2f41c6b00d53b5e80cbdc1737",
     "engine": "supplied-reference",
-    "sha256": "baa199d6d18ec71232c45db97cc85961302887ebe70bb45e0e0d8a9160299332"
+    "sha256": "ff5432fcbe564d041ee5dd91b7505b920072088986168e20a082a41254974874"
   },
   "dark": {
-    "bytes": 766587,
+    "bytes": 766834,
     "elements": 2905,
     "animation_tracks": 890,
     "peak_changing_elements": 95,
@@ -21,6 +21,6 @@
     "duration": 31.0,
     "reference_sha256": "beada4909758073238404924e9fae339702c6db2f41c6b00d53b5e80cbdc1737",
     "engine": "supplied-reference",
-    "sha256": "6fa3e6846c02f53727de38df68d0793fb5ad635e2955653d3ff2b33bb6216384"
+    "sha256": "b7215ed702ea10487bedd777b6498ce2b6378781bcbfe5a96429463680a170ae"
   }
 }
