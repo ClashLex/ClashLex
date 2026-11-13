@@ -3,3 +3,11 @@ __pycache__/
 build/
 raid/preview/
 raid/ansil-raid.zip
+
+# Generated visual QA and experiment exports
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.webm

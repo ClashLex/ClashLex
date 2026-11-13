@@ -17,7 +17,7 @@
 <div class="timeline"><label for="time" class="eyebrow" style="margin:0">Reel</label><input id="time" type="range" min="0" max="30.999" step="0.01" value="0" aria-label="Animation time" disabled><output id="clock" for="time">00.00 / 31.00</output></div>
 <nav class="acts" aria-label="Jump to an act"></nav>
 <p id="status" class="note" role="status">Loading the screening controls…</p>
-<div class="bottom"><p id="beat">A quiet page, before the trouble starts.</p><div class="links"><a id="asset" href="raid-light.svg" download>SVG</a><a href="README.md">Beat sheet ↗</a></div></div>
+<div class="bottom"><p id="beat">A quiet page, before the trouble starts.</p><div class="links"><a id="asset" href="raid-light.svg" download>SVG</a><a href="V2_DESIGN.md">Beat sheet ↗</a></div></div>
 <p class="fine">Adapted from the supplied reference. Your words are the stage. The profile banner plays entirely through SVG animation; these controls belong to the screening room.</p>
 </main>
 <script>
@@ -48,12 +48,13 @@ async function load() {
     beats = timeline.beats; duration = timeline.duration;
     actStarts = timeline.acts.map(act => act[1]);
     $('time').max = duration - .001;
-    const labels = ['Break-in', 'Challenge', 'The chase', 'Escalation', 'Counterattack', 'The reset'];
+    const labels = {'01-break-in':'Break-in','02-challenge':'Challenge','02-the-climb':'The climb','03-chase':'The chase','03-word-ladder':'Word ladder','04-escalation':'Escalation','04-chopper-clones-charm':'Chopper / clones / charm','05-counterattack':'Counterattack','05-bankai':'Bankai','06-reset':'The reset'};
+    const label = name => labels[name] || name.replace(/^\d+-/, '').replaceAll('-', ' ');
     document.querySelector('.acts').replaceChildren(...timeline.acts.map((act, i) => {
       const [, start, end] = act;
       const button = document.createElement('button');
       button.dataset.time = start;
-      button.append(String(i + 1).padStart(2, '0') + ' / ' + labels[i]);
+      button.append(String(i + 1).padStart(2, '0') + ' / ' + label(act[0]));
       const range = document.createElement('span');
       range.textContent = start.toFixed(2) + ' \u2014 ' + end.toFixed(2);
       button.append(range);
