@@ -1,11 +1,17 @@
 name: build-raid
 
-# Rebuilds the README animation whenever the generator changes.
+# Rebuilds the published V2 README animation whenever its sources change.
 on:
   push:
     paths:
       - "raid/make_raid.py"
-      - "raid/test_raid.py"
+      - "raid/make_raid_v2.py"
+      - "raid/assemble_v2.py"
+      - "raid/_v2_acts_2_3.py"
+      - "raid/_v2_act4.py"
+      - "raid/_v2_act5.py"
+      - "raid/_v2_act6.py"
+      - "raid/test_raid_v2.py"
       - ".github/workflows/build-raid.yml"
   workflow_dispatch:
 
@@ -30,12 +36,14 @@ jobs:
           python -m pip install Pillow
           sudo apt-get update
           sudo apt-get install --yes fonts-liberation
+      - name: Assemble V2 generator
+        run: python raid/assemble_v2.py
       - name: Test timing, geometry and CLI
         run: python -m unittest discover -s raid -p "test_*.py"
       - name: Generate and validate SVGs
-        run: python raid/make_raid.py
+        run: python raid/make_raid_v2.py
       - name: Verify deterministic assets
-        run: python raid/make_raid.py --check
+        run: python raid/make_raid_v2.py --check
       - name: Commit and push
         run: |
           git config user.name github-actions
