@@ -1,12 +1,12 @@
-# V2 — “Margin Duel”
+# “Margin Duel” — V2 production animation
 
-Design and implementation plan for the second-generation README fight.
+Design and implementation reference for the published README animation.
 
-- **Branch:** `v2-margin-duel`
+- **Production:** `main`
 - **Generator:** `raid/make_raid_v2.py`
-- **Output during development:** `build/raid-v2/`
-- **Status:** QA passing; ready for review
-- **Baseline:** `make_raid.py` / `raid-*.svg` at commit `a50b87c`
+- **Output:** tracked V2 assets in `raid/`
+- **Status:** published; V2 is the only maintained generator
+- **Historical baseline:** V1 assets at commit `a50b87c`
 
 ---
 
@@ -23,7 +23,8 @@ Design and implementation plan for the second-generation README fight.
 5. Replace “Domain Expansion” with an original **Bankai: Margin Storm**.
 6. Use the love-charm sequence and character multiplication in new situations
    that serve the vertical “margin duel” rather than repeating V1’s staging.
-7. Keep a rollback path: V1 stays untouched until V2 passes every gate.
+7. Keep editable act sources and the assembled generator together so builds
+   remain reproducible without the retired V1 generator.
 
 ### Non-goals
 
@@ -31,30 +32,22 @@ Design and implementation plan for the second-generation README fight.
   external assets inside the SVG.
 - No change to the bio text.
 - No change to the 31-second duration or six-act player contract.
-- No refactor of the engine during the choreography rewrite. The engine is
-  forked as-is so that quality work stays isolated from architecture work.
+- No engine redesign; the choreography continues to use the established,
+  tested animation primitives.
 
 ---
 
-## 2. Why a fork instead of an in-place rewrite
+## 2. Source organization
 
-V1 is a 2,900-line imperative production. The safe boundary is:
+`make_raid_v2.py` is the assembled, self-contained production generator.
+`assemble_v2.py` uses its engine, opening act, Chopper definition, and renderer
+as a template, then inserts the separately editable act sources. It discovers
+these sections by their markers rather than depending on the retired V1 file
+or fixed line numbers.
 
-| Range | Contents | V2 treatment |
-| --- | --- | --- |
-| `1–1284` | constants, palettes, tracks, 88 poses, `Char`, `Word`, layout, generic effects, cast | keep byte-for-byte |
-| `1286–1449` | Act 1 (break-in, hole, climb, “rebuild” kick) | keep byte-for-byte |
-| `1451–2605` | Acts 2–6 and act-specific effects | replace with the Margin Duel |
-| `2607–2900` | `render`, static export, linter, preview/export, bundle, CLI | keep; add V2 weapon windows and Bankai hooks |
-
-`make_raid_v2.py` is built from those four slices. This guarantees:
-
-- V1 assets remain valid while V2 is developed;
-- the old and new films can be rendered side by side;
-- a regression in the new choreography cannot break the current profile;
-- the final swap is a file replacement, not an engine migration.
-
-After V2 is approved, the engine can be modularized separately if desired.
+The generated light/dark animated SVGs, static exports, and validation report
+are committed beside the generator. V1-only generator and test files have
+been removed; historical profile material remains under `archive/`.
 
 ---
 
@@ -234,20 +227,17 @@ peeks back in at 29.35, and everyone is off the page before the loop point.
 
 ### 6.1 Source layout and assembly
 
-`raid/make_raid_v2.py` is assembled by `raid/assemble_v2.py` from:
+`raid/make_raid_v2.py` is assembled by `raid/assemble_v2.py` from its own
+engine, opening act, Chopper definition, and renderer, found by section
+markers, plus the editable scene sources:
 
-1. `raid/make_raid.py` lines `1–1284` (engine, generic effects, cast) — copied;
-2. `raid/make_raid.py` lines `1286–1449` (Act 1) — copied byte-for-byte;
-3. `raid/_v2_acts_2_3.py` (Acts 2–3 and the rule-gap prop);
-4. the V1 `Chopper` class, extracted verbatim from `raid/make_raid.py`;
-5. `raid/_v2_act4.py` (Chopper, clones, charm);
-6. `raid/_v2_act5.py` (Bankai, wall, rubble, pickaxe);
-7. `raid/_v2_act6.py` (reset, restore, salute, metadata);
-8. `raid/make_raid.py` lines `2607–2900` (render, linter, preview, CLI) —
-   copied, with V2 weapon windows and Bankai hooks.
+1. `raid/_v2_acts_2_3.py` (Acts 2–3 and the rule-gap prop);
+2. `raid/_v2_act4.py` (Chopper, clones, charm);
+3. `raid/_v2_act5.py` (Bankai, wall, rubble, pickaxe);
+4. `raid/_v2_act6.py` (reset, restore, salute, metadata).
 
 Run `python raid/assemble_v2.py` after editing any act source. The assembled
-file is the reviewable artifact; the act sources are the editable units.
+file is the production generator; the act sources are the editable units.
 
 ### 6.2 Scene globals the renderer expects
 
@@ -334,8 +324,8 @@ storyboards and act sheets have been reviewed in both themes.
 
 ### Unit tests — pass
 
-`python -m unittest discover -s raid -p 'test_*.py'` → **34 tests**
-(14 V1 + 20 V2), all passing. The V2 suite covers:
+`python -m unittest discover -s raid -p 'test_*.py'` → **22 V2 tests**,
+all passing. The suite covers:
 
 - exact bio copy and word targets;
 - six-act metadata and the Margin Duel beat tags;
@@ -354,7 +344,7 @@ storyboards and act sheets have been reviewed in both themes.
 - deterministic hashes across `PYTHONHASHSEED=1` and `349`;
 - static fallback, linter rejection and stale asset detection.
 
-### Visual — key-frame pass; full export pending
+### Visual validation — pass
 
 - 122 key frames (61 per theme) captured with Playwright and reviewed as
   contact sheets across all six acts;
@@ -381,7 +371,7 @@ Chromium executable.
 
 ### Performance — pass
 
-- 766,834 bytes per animated SVG (≈749 KiB; V1 is 724,210 bytes);
+- approximately 767 KB per animated SVG;
 - 890 animation tracks (budget ≤1,250);
 - 95 peak changing elements (budget ≤120);
 - 88 poses;
@@ -393,29 +383,19 @@ Chromium executable.
 
 ```
 raid/
-  make_raid.py          # V1 baseline, untouched on this branch
-  assemble_v2.py        # assembles make_raid_v2.py from the slices below
-  make_raid_v2.py       # assembled V2 generator (reviewable artifact)
+  assemble_v2.py        # assembles V2 from its marked template and act sources
+  make_raid_v2.py       # self-contained V2 production generator
   _v2_acts_2_3.py       # editable Acts 2–3
   _v2_act4.py           # editable Act 4
   _v2_act5.py           # editable Act 5
   _v2_act6.py           # editable Act 6 + metadata
-  test_raid_v2.py       # 20 V2 tests
-  V2_DESIGN.md          # this document
+  test_raid_v2.py       # V2 regression tests
+  README.md             # V2 build and preview instructions
+  V2_DESIGN.md          # choreography and implementation notes
   preview.html          # player; V2 act labels are read from metadata
-  raid-*.svg            # V1 assets, untouched until swap
+  raid-*.svg            # published V2 light/dark animated/static assets
 build/
-  raid-v2/              # V2 development output (gitignored)
-```
-
-After approval:
-
-```
-raid/make_raid.py       # V2 replaces V1
-raid/raid-*.svg         # regenerated V2 assets
-raid/test_raid.py       # V2 tests replace V1 choreography assertions
-raid/README.md          # updated story/build notes
-README.md               # <picture> block restored
+  raid-v2/              # optional review renders (gitignored)
 ```
 
 ---
@@ -424,30 +404,30 @@ README.md               # <picture> block restored
 
 | Risk | Mitigation |
 | --- | --- |
-| New choreography feels less polished | author from the beat sheet; review act-by-act; keep V1 as baseline |
-| Engine regression | engine slice is byte-for-byte from V1; no refactor |
+| New choreography feels less polished | author from the beat sheet; review act-by-act and compare rendered sheets |
+| Engine regression | run the V2 geometry, rendering, and bundle tests |
 | Broken spatial continuity | `world()` assertions at every hand-off/contact; contact sheets |
 | Weapon continuity errors | explicit katana windows; `stuck_katana` reuse; tests |
 | Loop seam | restore all effects before 31 s; pixel seam test |
 | File bloat | reuse geometry, cap storm count, track count budget |
 | Bankai too similar to Domain Expansion | separate effect design: blade spirit + storm + ink field, not a void swallow |
 | Chopper/clone/charm feel bolted on | they each change the fight’s advantage: interruption, pincer, reversal |
-| CI workflow fires on V1 only | no workflow change until V2 swap; then update paths |
+| CI misses a choreography change | workflow watches the V2 generator and every editable act source |
 
 ---
 
 ## 10. Definition of done
 
-1. `make_raid_v2.py` builds four SVGs and `validation.json` in `build/raid-v2/`.
+1. `make_raid_v2.py` builds four SVGs and `validation.json` in the selected
+   output directory (`raid/` by default).
 2. The V2 test suite passes.
 3. `--check` is clean.
 4. Loop, embedding, reduced-motion and player controls pass.
 5. V1 and V2 contact sheets have been compared.
 6. The design document is updated with final timings and any deviations.
-7. The branch is committed and ready for review; production assets are not
-   swapped until review approves.
+7. V2 is the published production animation; V1-only sources and documentation
+   are retired, while historical materials remain in `archive/`.
 
-Status: build, tests, stale-asset checks, visual review and the full 372-frame
-exports pass on `v2-margin-duel`. The release ZIP includes the V2 generator,
-assembler, editable act sources, tests and design document. Production assets
-remain untouched pending review; this branch is pushed for review.
+Status: all build, test, stale-asset, visual-review, and full 372-frame export
+gates pass. The V2 release ZIP contains the maintained generator, assembler,
+editable act sources, tests, player, and design notes.

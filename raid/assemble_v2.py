@@ -1,66 +1,33 @@
-"""Assemble raid/make_raid_v2.py from the V1 engine slices and the V2 act sources.
-
-V2 keeps V1's engine, Act 1, renderer and CLI while replacing Acts 2-6. Edit the
-act sources, then run this script and regenerate the assets:
-
-    python raid/assemble_v2.py
-    python raid/make_raid_v2.py --out build/raid-v2
-"""
+"""Assemble the V2 generator from its engine and editable scene sources."""
 from pathlib import Path
 
 RAID = Path(__file__).resolve().parent
-SRC = RAID / "make_raid.py"
+SOURCE = RAID / "make_raid_v2.py"
+lines = SOURCE.read_text(encoding="utf-8").splitlines(keepends=True)
 
-lines = SRC.read_text(encoding="utf-8").splitlines(keepends=True)
 
-# Engine: constants, tracks, poses, Char, Word, layout, generic effects and cast.
-head = "".join(lines[:1284])
-head = head.replace("FADE = (27.13, 27.63)", "FADE = (26.55, 27.05)")
-head = head.replace("RESTORE = (27.23, 28.23)", "RESTORE = (26.65, 27.65)")
+def find_line(prefix):
+    matches = [i for i, line in enumerate(lines) if line.startswith(prefix)]
+    if len(matches) != 1:
+        raise ValueError(f"Expected one source line starting with {prefix!r}, found {len(matches)}")
+    return matches[0]
 
-# Act 1: break-in, hole, climb and the "rebuild" kick. The hand-off already ends
-# with Red facing the heading rule, so no body change is needed.
-act1 = "".join(lines[1285:1449])
 
-# Renderer, static export, linter, preview and CLI.
-tail = "".join(lines[2606:])
-tail = tail.replace(
-    'out.append(ink.svg(p["fg"]))',
-    'out.append(ink.svg(p["fg"], weapons=p, katana_win=(6.0, 26.0)))',
-)
-tail = tail.replace(
-    'out.append(ink.svg(p["void_fg"], op_track=VOID_WIN))',
-    'out.append(ink.svg(p["void_fg"], weapons=p, op_track=BANKAI_INK_WIN, katana_win=(18.8, 25.0)))',
-)
-tail = tail.replace(
-    "katana_win=(6.0, 17.4), pick_win=(24.8, 26.4)",
-    "katana_win=(6.0, 24.4), pick_win=(24.3, 25.6)",
-)
+act1_start = find_line("# ================================================================ ACT 1")
+act1_end = find_line("def stuck_katana(")
+chopper_start = find_line("class Chopper:")
+act4_start = find_line("# ================================================================ ACT 4")
+render_start = find_line("def render(theme):")
+if not act1_start < act1_end < chopper_start < act4_start < render_start:
+    raise ValueError("V2 generator sections are not in the expected order")
 
-# The inherited release bundler lists V1 sources; package the assembled V2 and
-# its editable inputs instead.
-bundle_start = tail.index("        for name in ('make_raid.py','test_raid.py','README.md','preview.html'):")
-bundle_end = tail.index("        for name in ('validation.json'", bundle_start)
-tail = tail[:bundle_start] + """        source_files = (
-            'make_raid.py', 'test_raid.py', 'make_raid_v2.py', 'assemble_v2.py',
-            '_v2_acts_2_3.py', '_v2_act4.py', '_v2_act5.py', '_v2_act6.py',
-            'test_raid_v2.py', 'V2_DESIGN.md', 'preview.html',
-        )
-        for name in source_files:
-            path = source/name
-            if path.exists():
-                archive.write(path,'raid/'+name)
-""" + tail[bundle_end:]
+head = "".join(lines[:act1_start])
+act1 = "".join(lines[act1_start:act1_end])
+tail = "".join(lines[render_start:])
 
-# The Chopper class lives in V1's Act 4, outside the engine slice. Copy it
-# verbatim so the cameo keeps V1's geometry and boot-grip helper.
-start = next(i for i, line in enumerate(lines) if line.startswith("class Chopper:"))
-end = next(i for i in range(start + 1, len(lines))
-           if lines[i] and not lines[i][0].isspace() and not lines[i].startswith("#"))
-chopper = "".join(lines[start:end]).rstrip() + "\n"
+chopper_end = act4_start
+chopper = "".join(lines[chopper_start:chopper_end]).rstrip() + "\n"
 
-# Keep the source files independently editable but preserve the blank-line
-# separation the assembled scene expects between acts.
 scene = (
     (RAID / "_v2_acts_2_3.py").read_text(encoding="utf-8") + "\n\n"
     + chopper + "\n"
@@ -69,6 +36,5 @@ scene = (
     + (RAID / "_v2_act6.py").read_text(encoding="utf-8") + "\n\n"
 )
 
-out = head + act1 + scene + tail
-(RAID / "make_raid_v2.py").write_text(out, encoding="utf-8")
-print("assembled", len(out.splitlines()), "lines")
+SOURCE.write_text(head + act1 + scene + tail, encoding="utf-8")
+print("assembled", len((head + act1 + scene + tail).splitlines()), "lines")

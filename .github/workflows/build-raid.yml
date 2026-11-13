@@ -4,7 +4,6 @@ name: build-raid
 on:
   push:
     paths:
-      - "raid/make_raid.py"
       - "raid/make_raid_v2.py"
       - "raid/assemble_v2.py"
       - "raid/_v2_acts_2_3.py"

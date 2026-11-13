@@ -5,9 +5,9 @@ The reference's poses, timing and six-act fight underpin Ansil's profile and a
 custom Chopper cameo. Profile copy and word targets are configured below;
 repository integration adds portable fonts, stable IDs, validation and previews.
 
-python raid/make_raid.py
-python raid/make_raid.py --check
-python raid/make_raid.py --preview --export [--browser PATH]
+python raid/make_raid_v2.py
+python raid/make_raid_v2.py --check
+python raid/make_raid_v2.py --preview --export [--browser PATH]
 Building requires Pillow. Browser previews also need Playwright; video export
 uses ffmpeg or imageio-ffmpeg. No dependencies are loaded by the SVG itself.
 """
@@ -2790,7 +2790,7 @@ def bundle(outdir,files):
     source=Path(__file__).resolve().parent
     with zipfile.ZipFile(destination,'w',zipfile.ZIP_DEFLATED) as archive:
         source_files = (
-            'make_raid.py', 'test_raid.py', 'make_raid_v2.py', 'assemble_v2.py',
+            'make_raid_v2.py', 'assemble_v2.py',
             '_v2_acts_2_3.py', '_v2_act4.py', '_v2_act5.py', '_v2_act6.py',
             'test_raid_v2.py', 'V2_DESIGN.md', 'preview.html',
         )

@@ -1,5 +1,6 @@
 """Margin Duel: profile content, V2 choreography continuity and SVG output."""
 import importlib.util
+import hashlib
 import json
 import math
 import os
@@ -237,6 +238,18 @@ class MarginDuelTests(unittest.TestCase):
             self.assertNotEqual(stale.returncode, 0)
             self.assertIn('Stale generated asset', stale.stderr)
 
+    def test_assembler_is_idempotent_without_v1_sources(self):
+        self.assertFalse(SCRIPT.with_name('make_raid.py').exists())
+        digests = []
+        for _ in range(2):
+            result = subprocess.run(
+                [sys.executable, str(SCRIPT.with_name('assemble_v2.py'))],
+                capture_output=True, text=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            digests.append(hashlib.sha256(SCRIPT.read_bytes()).hexdigest())
+        self.assertEqual(digests[0], digests[1])
+
     def test_release_bundle_contains_v2_sources_and_docs(self):
         with tempfile.TemporaryDirectory(prefix='raid-v2-bundle-') as temporary:
             out = Path(temporary)
@@ -255,7 +268,6 @@ class MarginDuelTests(unittest.TestCase):
             with zipfile.ZipFile(out / 'ansil-raid.zip') as archive:
                 names = set(archive.namelist())
             required = {
-                'raid/make_raid.py', 'raid/test_raid.py',
                 'raid/make_raid_v2.py', 'raid/assemble_v2.py',
                 'raid/_v2_acts_2_3.py', 'raid/_v2_act4.py',
                 'raid/_v2_act5.py', 'raid/_v2_act6.py',
@@ -263,6 +275,8 @@ class MarginDuelTests(unittest.TestCase):
                 'raid/preview.html',
             }
             self.assertTrue(required.issubset(names), required - names)
+            self.assertNotIn('raid/make_raid.py', names)
+            self.assertNotIn('raid/test_raid.py', names)
             self.assertNotIn('raid/README.md', names)
             self.assertNotIn('README.md', names)
 
