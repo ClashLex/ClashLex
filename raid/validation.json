@@ -1,26 +1,26 @@
 {
   "light": {
-    "bytes": 724210,
-    "elements": 3689,
-    "animation_tracks": 1193,
-    "peak_changing_elements": 108,
-    "peak_time": 27.192,
+    "bytes": 766834,
+    "elements": 2905,
+    "animation_tracks": 890,
+    "peak_changing_elements": 95,
+    "peak_time": 23.369,
     "poses": 88,
     "duration": 31.0,
     "reference_sha256": "beada4909758073238404924e9fae339702c6db2f41c6b00d53b5e80cbdc1737",
     "engine": "supplied-reference",
-    "sha256": "cc96754f34e485c9b056708e4989d9e2e833396da7cbe2679484300399354ba8"
+    "sha256": "ff5432fcbe564d041ee5dd91b7505b920072088986168e20a082a41254974874"
   },
   "dark": {
-    "bytes": 724210,
-    "elements": 3689,
-    "animation_tracks": 1193,
-    "peak_changing_elements": 108,
-    "peak_time": 27.192,
+    "bytes": 766834,
+    "elements": 2905,
+    "animation_tracks": 890,
+    "peak_changing_elements": 95,
+    "peak_time": 23.369,
     "poses": 88,
     "duration": 31.0,
     "reference_sha256": "beada4909758073238404924e9fae339702c6db2f41c6b00d53b5e80cbdc1737",
     "engine": "supplied-reference",
-    "sha256": "e5d4f58df48afbaa4a41c9789ce0442a2e698a4cf35d02b6537438c8896b899b"
+    "sha256": "b7215ed702ea10487bedd777b6498ce2b6378781bcbfe5a96429463680a170ae"
   }
 }
