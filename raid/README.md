@@ -1,114 +1,41 @@
-# ANSIL - README rumble
+# README animation
 
-An adaptation of the supplied `inspiration.py`, recovered from repository
-history. Its 31-second animation, 88-pose library and six acts provide the fight
-choreography, with Ansil's bio and a custom Chopper cameo. The profile reads:
+The profile README uses the V2 animated SVGs in this directory. The generator,
+editable act sources, tests, and design notes are all for V2; the older V1
+generator has been removed.
 
-> Hi, I'm Ansil.
->
-> B.Tech CSE Undergraduate.
->
-> Developer. Experimenter. Builder.
->
-> I build, break, and rebuild things.
+## Build and validate
 
-The reference's crossed-out diary line is removed. The three bio lines occupy
-its three action-bearing rows. The fight kicks `rebuild`, breaks through
-`things.`, and slices `break,`, `Experimenter.`, and `Undergraduate.`.
-All seven letters of `rebuild` use the reference's existing flight patterns.
-
-Chopper replaces the reference's teddy gag. The SVG drawing uses his original
-pink cross-marked hat, branching antlers, blue nose and hooves. He hops into the
-scene, grabs a boot to interrupt the fight, then tumbles away. The grip follows
-the animated foot through jumps and turns. Character reference:
-[Tony Tony Chopper / ONE PIECE](https://one-piece.com/character/chopper/index.html).
-The cameo is drawn entirely with SVG paths; no external image is loaded.
-
-## Build and preview
-
-Python 3.12 or later, Pillow, and Liberation Sans (Linux) or Arial (Windows/macOS).
-Pillow measures the text during the build; the generated SVG needs no Python,
-JavaScript, CSS animation, external fonts, raster images or filters.
+Python 3.12 or later, Pillow, and Liberation Sans (Linux) or Arial (Windows/macOS)
+are required to build. Use the same font installation when comparing output.
 
 ```sh
 python -m pip install Pillow
-python raid/make_raid.py
-python raid/make_raid.py --check
+python raid/assemble_v2.py
 python -m unittest discover -s raid -p "test_*.py"
+python raid/make_raid_v2.py
+python raid/make_raid_v2.py --check
+```
+
+The build refreshes the animated and static light/dark SVGs plus
+`validation.json`. The GitHub Actions workflow runs these steps for V2 source
+changes.
+
+## Preview
+
+```sh
 python -m http.server 8000
 ```
 
-Open `http://localhost:8000/raid/preview.html` for play/pause, scrubbing, speed,
-theme switching and navigation through all six acts. Reduced-motion preferences
-start the player paused. The profile README always selects an animated SVG for
-the current theme; it has no automatic static-image fallback.
+Open `http://localhost:8000/raid/preview.html`. For rendered act sheets, GIFs,
+and MP4s, install Playwright with Chromium and ffmpeg (or `imageio-ffmpeg`),
+then run:
 
 ```sh
-python -m pip install playwright imageio-ffmpeg
-python -m playwright install chromium
-python raid/make_raid.py --preview --export
+python raid/make_raid_v2.py --preview --export
 ```
 
-An installed Chrome can be used with
-`--browser "C:\Program Files\Google\Chrome\Application\chrome.exe"`.
-`--fps` defaults to 12; `--out build/raid` selects another output directory.
-For a particular Liberation Sans installation, set `RAID_FONT_DIR` to the
-folder containing `LiberationSans-Regular.ttf` and `LiberationSans-Bold.ttf`.
-Use the same font installation when comparing builds across machines.
+Generated frames and preview exports are ignored by Git.
 
-The build writes `raid-light.svg`, `raid-dark.svg`, both optional `-static.svg` exports,
-and `validation.json`. Optional rendering creates frame PNGs, six act sheets
-per theme, compact storyboards, GIF/MP4 previews and `ansil-raid.zip`.
-MP4 export pads the reference's 277px height to 278px for H.264 compatibility.
-Generated preview files and the release zip are ignored by Git.
-
-## Editing the profile
-
-`H1_TEXT` is the heading. `PARAS` contains the four text slots; the first is
-intentionally empty. `WORD_TARGETS` maps five choreography roles to exact words
-in those slots, including punctuation. Update the mapping if those words change.
-The reference's layout engine measures the new text and supplies the action
-coordinates. `PALETTES` retains the original light and dark colors.
-
-The supplied engine retains its pose and timing system, with deterministic
-clipping IDs. `Chopper` supplies the new mascot artwork, movement and boot grip;
-`CHOPPER_COLORS` controls his colors independently of the page theme.
-A portable font loader, accessible SVG metadata, the CLI, validation and
-preview/export tools provide the repository integration. The reference source
-fingerprint is recorded as `REFERENCE_SHA256` and in the validation report.
-The previous pirate/ASCII animation engine is no longer used.
-
-## Acts
-
-| Display time | Act |
-| --- | --- |
-| 0.00-5.53s | Break In |
-| 5.53-7.91s | Challenge |
-| 7.91-11.89s | Chase |
-| 11.89-17.73s | Escalation |
-| 17.73-25.45s | Counterattack |
-| 25.45-31.00s | Reset |
-
-Display times include the reference's 0.25-second lead trim. `BEATS` supplies
-the player labels from the actual action timeline; it does not retime the film.
-
-## Validation
-
-`--check` verifies all five generated artifacts without writing. The linter
-checks XML, references, strict serialized timing, path morph compatibility,
-and executable/external content. It reports the actual file size and concurrent
-animation count; the full reference effects are retained, including their higher
-concurrency than the previous simplified animation.
-
-Tests check the exact bio, Chopper's boot contact and visibility, all seven
-kicked letters, the climb handoff, staged limb visibility, restored cut words,
-weapon geometry, world coordinates, the
-lead trim, deterministic IDs across Python hash seeds and stale asset detection.
-Browser rendering checks pixel equality at 0, 30.999 and 31.001 seconds and
-image embedding at desktop and mobile widths, including a check that pixels
-change while the SVG plays inside an image element. Results are written to
-`preview/render-report.json`.
-
-The reference fingerprint identifies the source of the choreography, not a
-claim that this personalized version is pixel-identical. Chopper's entrance,
-boot grab and exit replace the original mascot sequence within the same act.
+See [V2_DESIGN.md](./V2_DESIGN.md) for the choreography, layout, validation
+results, and source organization.
